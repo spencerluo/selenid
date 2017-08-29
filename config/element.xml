@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<object>
+	<loginPage>
+		<username type="id" value="username" />
+		<password type="id" value="password" />
+		<yanzhengma type="name" value="vcode" />
+		<submit type="xpath" value='/html/body/div[6]/div[4]/form/div[4]/button' />
+		<user type="xpath"
+			value='//*[@id="bs-example-navbar-collapse-1"]/ul[2]/li[1]/a' />
+		<nli type="linkText" value="NLI 系统" />
+		<应用管理 type="linkText" value="应用管理" />
+		<test type="xpath" value="/html/body/div[6]/div[5]/div/div[3]/div/div[1]/button[2]" />
+		<配置模块 type="xpath" value="/html/body/div[6]/div[5]/div/div[3]/div/div[1]/button[1]" />
+		<configureSubmit type="xpath" value='//*[contains(@id,"layui-layer")]/div[3]/a[1]' />
+		<question type="xpath" value='//*[@id="configApp1"]/form/table/tbody/tr[1]/td[2]/input' />
+		<testSubmit type="xpath" value='//*[@id="btn_test_do"]' />
+		<answer type="xpath" value='//*[@id="test_result"]' />
+	</loginPage>
+	<corpusPage>
+		<searchBox type="xpath" value='//*[@id="corpusBox"]/div/input' />
+		<searchSubmit type="xpath" value='//*[@id="corpusTestNow"]' />
+		<corpusSubmit type="linkText" value='提交至例句库' />
+		<subMsgClose type="linkText" value="好的" />
+		<subMsg type="xpath" value='//*[@id="corpussubDialog"]/div/div[2]/p' />
+		<delete type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[9]/img' />
+		<deleteSubmit type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
+		<deleteMsgClose type="xpath" value='html/body/div[6]/div[2]/div[3]/div[3]/a' />
+		<deleteMsg type="xpath" value='html/body/div[6]/div[2]/div[3]/div[2]/div/div[2]/p' />
+	</corpusPage>
+	<grammarPage>
+		<add type="id" value="grammarAdd" />
+		<cancel type="id" value="cancel" />
+		<name type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[3]/td[2]/input" />
+		<content type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[5]/td[2]/textarea"/>
+		<corpus type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[7]/td[2]/input" />
+		<answer1 type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[9]/td[2]/div[2]/textarea" />
+		<answer2 type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[10]/td[2]/div[2]/textarea" />
+		<answer3 type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[11]/td[2]/div[2]/textarea" />
+		<addAnswers type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[9]/td[3]/div/img' />
+		<yuyi type="xpath"
+			value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[9]/td[2]/div[1]/label[2]/input" />
+		<submit type="linkText" value='提交'/>
+		<testSubmit type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a[2]" />
+		<testClose type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a[1]" />
+		<testOk type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a" />
+		<test type="xpath"
+			value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[7]/td[3]/input" />
+		<submitChange type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
+		<deleteSubmit type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
+		<deleteMsgClose type="xpath" value='html/body/div[6]/div[2]/div[5]/div[3]/a' />
+		<deleteMsg type="xpath" value='html/body/div[6]/div[2]/div[5]/div[2]/div/div[2]/p' />
+		<titleErrorMsg type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[4]/td[2]/div' />
+		<contentErrorMsg type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[6]/td[2]/div' />
+		<corpusErrorMsg type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[8]/td[2]/div' />
+		<answerErrorMsg type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[10]/td[2]/div' />
+		<quickAddRule type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[4]' />
+		<quickAddSlot type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[3]' />
+		<quickAddTemplate type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[2]' />
+		<quickSearch type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[1]' />
+		<quickEdit type="id" value="ruleslotedit" />
+		<sortButton type="xpath" value='//*[@id="subform"]/div[1]/div[1]/div/button' />
+		<sortByChange type="linkText" value="按修改日期排序" />
+	</grammarPage>
+	<rulePage>
+		<add type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
+		<name type="xpath"
+			value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[3]/td[2]/input' />
+		<content type="xpath"
+			value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[5]/td[2]/textarea' />
+		<submit type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
+		<cancel type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[1]' />
+		<changeSubmit type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
+		<searchBox type="xpath" value='//*[@id="subform"]/div[1]/div[2]/div/input' />
+		<searchSubmit type="xpath" value='//*[@id="search"]' />
+		<deleteMsg type="xpath" value='html/body/div[6]/div[2]/div[7]/div[2]/div/div[2]/div[1]/p' />
+		<deleteMsgClose type="xpath" value='html/body/div[6]/div[2]/div[7]/div[3]/a' />
+		<titleErrorMsg type="xpath" value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[4]/td[2]/div' />
+		<contentErrorMsg type="xpath" value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[6]/td[2]/div' />
+	</rulePage>
+	<slotPage>
+		<add type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
+		<name type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[3]/td[3]/input' />
+		<datetime type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[1]' />
+		<timepoint type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/select/option[2]' />
+		<duration type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/select/option[3]' />
+		<internal type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[2]' />
+		<number type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[3]' />
+		<float type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[4]' />
+		<ext type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[5]' />
+		<mainType type="xpath" value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/input[1]' />
+		<subType type="xpath" value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/input[2]' />
+		<min type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[7]/td[3]/input' />
+		<max type="xpath"
+			value='//*[@id="pop_table"]/tbody/tr[9]/td[3]/input' />
+		<submit type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
+		<changeSubmit type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
+		<deleteMsg type="xpath"
+		    value='html/body/div[6]/div[2]/div[9]/div[2]/div/div[2]/div[1]/p' />
+		<deleteMsgClose type="xpath" value="html/body/div[6]/div[2]/div[9]/div[3]/a" />
+		<titleErrorMsg type="xpath" value='//*[@id="pop_table"]/tbody/tr[4]/td[3]/div' />
+		<mainTypeErrorMsg type="xpath" value='//*[@id="pop_table"]/tbody/tr[6]/td[3]/div'/>
+		<lengthErrorMsg type="xpath" value='//*[@id="pop_table"]/tbody/tr[10]/td[3]/div' />
+	</slotPage>
+	<templatePage>
+		<add type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
+		<name type="xpath"
+			value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[3]/td[2]/input' />
+		<content type="xpath"
+			value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[5]/td[2]/textarea' />
+		<submit type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
+		<changeSubmit type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
+		<deleteMsg type="xpath" value='html/body/div[6]/div[2]/div[11]/div[2]/div/div[2]/div[1]/p' />
+		<deleteMsgClose type="xpath" value='html/body/div[6]/div[2]/div[11]/div[3]/a' />
+		<titleErrorMsg type="xpath" value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[4]/td[2]/div' />
+		<contentErrorMsg type="xpath" value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[6]/td[2]/div' />
+	</templatePage>
+	<testPage>
+		<question type="name" value="corpusContent" />
+		<submit type="id" value="corpusTestNow" />
+		<answer type="name" value="corpusResult" />
+		<grammarResult type="name" value="grammarResult" />
+	</testPage>
+	<releasePage>
+		<release type="xpath" value='//*[@id="subform"]/div/div/input' />
+		<subMsgClose type="xpath" value='//*[@id="layui-layer1"]/div[3]/a' />
+	</releasePage>
+	<modelPage>
+		<add type="xpath" value='//*[@value="新增"]' />
+		<import type="xpath" value='//*[@id="import"]' />
+		<导入 type="linkText" value='导入' />
+		<delete type="xpath" value='html/body/div[9]/div/div[7]/div[3]/a[2]' />
+		<deleteTwice type="xpath" value='html/body/div[9]/div/div[8]/div[3]/a[2]' />
+		<addAppName type="xpath"
+			value='//*[@id="appnameBox"]/div[1]/table/tbody/tr[1]/td[2]/input' />
+		<submit type="xpath" value='//*[@id="layui-layer1"]/div[3]/a[2]' />
+		<closeAddNotice type="xpath"
+			value='//*[@id="layui-layer2"]/div[3]/a' />
+		<closeDeleteNotice type="xpath"
+			value='//*[@id="layui-layer3"]/div[3]/a' />
+		<deleteMsg type="xpath" value='//*[@id="appdeleteResultDialog"]/div[2]/div[1]/p' />
+		<enterApp type="id" value="enterApp" />
+		<nameErrorMsg type="xpath" value='//*[@id="appnameBox"]/div[1]/table/tbody/tr[2]/td[2]/div' />
+	</modelPage>
+	<mainPage>
+		<corpus type="linkText" value='例句库' />
+		<grammar type="linkText" value='grammar' />
+		<rule type="linkText" value='rule' />
+		<slot type="linkText" value='slot' />
+		<template type="linkText" value='template' />
+		<test type="linkText" value='测试' />
+		<release type="linkText" value='发布' />
+		<changeApp type="xpath"
+			value='/html/body/div[6]/div[1]/div/nav/div[2]/ul[2]/li[1]/span[2]' />
+		<user type="xpath" value='/html/body/div[3]/div[1]/div[2]/ul/li/a/img' />
+		<logout type="linkText" value="退出登录" />
+		<subMsg type="xpath" value='html/body/div[6]/div[2]/div[13]/div[2]/div/div[2]/p' />
+		<subMsgClose type="xpath"
+			value='/html/body/div[6]/div[2]/div[13]/div[3]/a' />
+		<subMsgYes type="xpath"
+			value='/html/body/div[17]/div[3]/div/button[2]/span' />
+		<subMsgNo type="xpath" value='/html/body/div[17]/div[3]/div/button[1]/span' />
+		<setting type="xpath" value='/html/body/div[6]/div[1]/div/nav/div[2]/ul[2]/li[2]/a/img' />
+		<logout type="linkText" value='退出登录' />
+		<document type="linkText" value='在线文档' />
+		<searchBox type="name" value="headtext" />
+		<searchSubmit type="id" value="headsearch" />
+	</mainPage>
+	<searchPage>
+	    <corpus type="xpath" value='//*[@id="subform"]/div[2]/div[1]' />
+	    <grammar type="xpath" value='//*[@id="subform"]/div[2]/div[2]' />
+	    <rule type="xpath" value='//*[@id="subform"]/div[2]/div[3]' />
+	    <slot type="xpath" value='//*[@id="subform"]/div[2]/div[4]' />
+	    <template type="xpath" value='//*[@id="subform"]/div[2]/div[5]' />
+	</searchPage>
+</object>
