@@ -43,11 +43,11 @@
 			<version>2.0-BETA16</version>
 		</dependency>
 		<dependency>
-    <groupId>com.codeborne</groupId>
-    <artifactId>selenide</artifactId>
-    <version>4.5.1</version>
-    <scope>test</scope>
-</dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>selenide</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -57,20 +57,20 @@
 				<version>2.12.4</version>
 				<configuration>
 					<argLine>
-                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                	</argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
 					<suiteXmlFiles>
 						<suiteXmlFile>config/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<workingDirectory>target/</workingDirectory>
 				</configuration>
 				<dependencies>
-                <dependency>
-                    <groupId>org.aspectj</groupId>
-                    <artifactId>aspectjweaver</artifactId>
-                    <version>${aspectj.version}</version>
-                </dependency>
-            </dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
