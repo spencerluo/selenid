@@ -8,7 +8,11 @@
       </packages>
       -->
       <classes>
-          <class name="testcases.NewTest"></class>
+          <class name="com.luojiahui.selenird.TestRule"></class>
+          <class name="com.luojiahui.selenird.TestTemplate"></class>
       </classes>
   </test>
+  <listeners>
+      <listener class-name="utils.AllureReporterListener"></listener>
+  </listeners>
 </suite>

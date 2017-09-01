@@ -96,4 +96,12 @@ public class MyWebDriver{
 	public WebDriver getDriver(){
 		return getWebDriver();
 	}
+	
+	public void sleep(long millis){
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

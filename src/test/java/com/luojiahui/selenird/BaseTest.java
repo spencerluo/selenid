@@ -10,8 +10,8 @@ public class BaseTest {
 
 	
 	public BaseTest(){
-		Configuration.timeout=5000;
+		Configuration.timeout=8000;
 		Configuration.browser="chrome";
-		XmlUtils.init("config\\element.xml");
+		XmlUtils.init("classes\\element.xml");
 	}
 }

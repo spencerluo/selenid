@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
-public class RuleModule {
+public class RuleModule extends BaseModule{
 
 	public static void addRule(MyWebDriver driver, String name, String content, String msg){
 		driver.page("mainPage").click("rule");
@@ -26,10 +26,12 @@ public class RuleModule {
 		assertSubMsg(driver, msg);
 	}
 	
-	public static void changeChange(MyWebDriver driver, String name, String content, String msg){
-//		changeRule(driver, name, content, msg);
-//		driver.page("rulePage").click("changeSubmit");
+	public static void changeRule(MyWebDriver driver, String name, String content){
+		driver.page("mainPage").click("rule");
+		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[1]/img")).click();
+		driver.page("rulePage").clear("content").sendKeys("content", content).click("submit");
 	}
+	
 	
 	public static void deleteRule(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("rule");
@@ -41,11 +43,6 @@ public class RuleModule {
 	public static void searchRule(MyWebDriver driver, String name, String content){
 		driver.page("rulePage").sendKeys("searchBox", name).click("searchSubmit");
 		assertSearchResult(driver, name, content);
-	}
-	
-	public static void assertSubMsg(MyWebDriver driver, String msg){
-		driver.page("mainPage").getElement("subMsg").should(text(msg));
-		driver.page("mainPage").click("subMsgClose");
 	}
 	
 	public static void assertSearchResult(MyWebDriver driver, String name, String content){

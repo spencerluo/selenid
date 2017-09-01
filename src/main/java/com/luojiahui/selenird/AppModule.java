@@ -14,6 +14,7 @@ public class AppModule {
 	public static void deleteApp(MyWebDriver driver, String appName){
 		driver.page("mainPage").click("changeApp");
 		$(By.xpath("//*[@value='" + appName + "']/following-sibling::*/a[4]")).click();
+		driver.sleep(1000);
 		driver.page("modelPage").click("delete").click("deleteTwice");
 	}
 	
