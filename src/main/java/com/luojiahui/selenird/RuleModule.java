@@ -36,6 +36,7 @@ public class RuleModule extends BaseModule{
 	public static void deleteRule(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("rule");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[2]/img")).click();
+		driver.sleep(1000);
 		driver.page("rulePage").click("submit");
 		assertDeleteMsg(driver, msg);
 	}

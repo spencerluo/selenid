@@ -35,6 +35,7 @@ public class TemplateModule extends BaseModule{
 	public static void deleteTemplate(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("template");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[2]/img")).click();
+		driver.sleep(1000);
 		driver.page("templatePage").click("submit");
 		assertDeleteMsg(driver, msg);
 	}
