@@ -25,17 +25,19 @@ public class NewTest extends BaseTest {
 //		TemplateModule.deleteTemplate(driver, "da", "删除成功!");
 		
 		try {
-			GrammarModule.addGrammar(driver, "kd", "kad", "kad");
-			GrammarModule.searchGrammar(driver, "kd", "kad", "语义");
-			CorpusModule.searchResult(driver, "kad");
-			CorpusModule.assertSearchResult(driver, "kad", "kd", "语义", "无");
-			GrammarModule.deleteGrammar(driver, "kd", "删除成功!");
+//			GrammarModule.addGrammar(driver, "kd", "kad", "kad");
+//			GrammarModule.searchGrammar(driver, "kd", "kad", "语义");
+//			CorpusModule.searchResult(driver, "kad");
+//			CorpusModule.assertSearchResult(driver, "kad", "kd", "语义", "无");
+//			GrammarModule.deleteGrammar(driver, "kd", "删除成功!");
 		} finally {
 			// TODO: handle finally clause
 			Thread.sleep(2000);
 			AppModule.deleteApp(driver, "app5");
 			driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
 			driver.page("modelPage").click("closeDeleteMsg");
+			Thread.sleep(2000);
+			driver.getDriver().quit();
 			Thread.sleep(2000);
 		}
 		

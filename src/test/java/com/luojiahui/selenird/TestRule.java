@@ -197,6 +197,7 @@ public class TestRule extends BaseTest{
 		deleteApp(driver, "testrule");
 		driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
 		driver.page("modelPage").click("closeDeleteMsg");
+		driver.getDriver().quit();
 	}
 	
 	  @DataProvider
