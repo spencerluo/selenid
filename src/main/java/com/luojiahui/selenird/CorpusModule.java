@@ -10,7 +10,7 @@ import com.codeborne.selenide.Selenide;
 import utils.MyWebDriver;
 public class CorpusModule {
 	
-	public static void searchResult(MyWebDriver driver, String corpus){
+	public static void searchCorpus(MyWebDriver driver, String corpus){
 		driver.page("mainPage").click("corpus");
 		driver.page("corpusPage").sendKeys("searchBox", corpus).click("searchSubmit");
 	}
@@ -20,6 +20,11 @@ public class CorpusModule {
 		driver.page("corpusPage").getElement("searchResultGrammar").should(text(grammar));
 		driver.page("corpusPage").getElement("searchResultAnswer").should(text(answer));
 		driver.page("corpusPage").getElement("searchResultSlot").should(text(slot));
+	}
+	
+	public static void searchExistCorpus(MyWebDriver driver, String corpus, String grammar, String answer, String slot){
+		searchCorpus(driver, corpus);
+		assertSearchResult(driver, corpus, grammar, answer, slot);
 	}
 	
 }
