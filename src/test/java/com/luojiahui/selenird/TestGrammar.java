@@ -206,12 +206,15 @@ public class TestGrammar extends BaseTest {
 		addSlotInternal(driver, "slot4");
 		addGrammar(driver, "grammar29", "(修仙|修人)<{slot4=修}>", "修仙");
 		changeGrammar(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>", "修人");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("修仙"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slotValue").should(text("xiu"));
 		getNewOldResult(driver, "old").get("slotValue").should(text("修"));
 		driver.page("grammarPage").click("submitChange");
 		assertSubMsg(driver, "提交成功!");
-		searchRule(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>");
+		assertSearchResult(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>","语义");
+		searchExistCorpus(driver, "修人", "grammar29", "语义", "slot4：xiu");
 	}
 	
 	@Test(description = "例句不匹配任何grammar")
@@ -268,6 +271,8 @@ public class TestGrammar extends BaseTest {
 		addSlotExt(driver, "slot7");
 		addGrammar(driver, "观测天空", "观测<slot7>", "观测天空");
 		addGrammar(driver, "grammar35", "观测天空", "观测天空","null");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("观测天空"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text("grammar35"));
 		getNewOldResult(driver, "old").get("grammarName").should(text("观测天空"));
@@ -343,7 +348,45 @@ public class TestGrammar extends BaseTest {
 		changeGrammar(driver, "grammar47", "讲故事", "讲啥", "null", "讲啥: corpus cannot match grammar: <grammar47>");
 	}
 	
+	@Test(description = "内容修改，新grammar匹配当前例句但不匹配之前的例句，之前例句不匹配其他grammar")
+	public void testGrammar48() {
+		addGrammar(driver, "grammar48", "说故事", "说故事" );
+		changeGrammar(driver, "grammar48", "说些故事", "说些故事");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("说故事"));
+		driver.click("详情");
+		getNewOldResult(driver, "new").get("grammarName").should(text(""));
+		getNewOldResult(driver, "old").get("grammarName").should(text("grammar48"));
+		driver.page("grammarPage").click("submitChange");
+		assertSubMsg(driver, "提交成功!");
+		assertSearchResult(driver, "grammar48", "说些故事","语义");
+		searchExistCorpus(driver, "说些故事", "grammar48", "语义", "无");
+	}
 	
+	@Test(description = "内容修改，新grammar匹配当前例句同时匹配之前的例句，新例句也不匹配其他grammar")
+	public void testGrammar49() {
+		addGrammar(driver, "grammar49", "编故事", "编故事" );
+		changeGrammarAndAssert(driver, "grammar49", "编[一段]故事", "编一段故事", "无");
+	}
+	
+	@Test(description = "内容修改，新grammar既不匹配当前例句也不匹配之前的例句，新例句也不匹配其他grammar")
+	public void testGrammar50() {
+		addGrammar(driver, "grammar50", "设计故事", "设计故事" );
+		changeGrammar(driver, "grammar50", "设计一段故事", "设计一个故事");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("设计故事"));
+		driver.click("详情");
+		getNewOldResult(driver, "new").get("grammarName").should(text(""));
+		getNewOldResult(driver, "old").get("grammarName").should(text("grammar50"));
+		driver.page("grammarPage").click("submitChange");
+		assertSubMsg(driver, "设计一个故事: new corpus cannot match any grammar");
+	}
+	
+	@Test(description = "内容修改，新grammar不匹配当前例句但匹配之前的例句，新例句也不匹配其他grammar")
+	public void testGrammar51() {
+		addGrammar(driver, "grammar51", "描述故事", "描述故事" );
+		changeGrammar(driver, "grammar51", "描述(故事|小说)", "描述战争", "null","描述战争: new corpus cannot match any grammar");
+	}
 	
 	@AfterMethod
 	public void afterMethod() {
@@ -357,16 +400,12 @@ public class TestGrammar extends BaseTest {
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 		createApp(driver, "testgrammar");
-		driver.page("mainPage").getElement("subMsg").should(text("模块创建成功!"));
-		driver.page("mainPage").click("subMsgClose");
 		enterApp(driver, "testgrammar");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		deleteApp(driver, "testgrammar");
-		driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
-		driver.page("modelPage").click("closeDeleteMsg");
 		driver.getDriver().quit();
 	}
 

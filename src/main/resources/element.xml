@@ -44,11 +44,12 @@
 		<element name="yuyi" type="xpath"
 			value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[9]/td[2]/div[1]/label[2]/input" />
 		<element name="submit" type="linkText" value='提交'/>
-		<element name="testSubmit" type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a[2]" />
-		<element name="testClose" type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a[1]" />
-		<element name="testOk" type="xpath" value="html/body/div[18]/div[3]/div[1]/div[3]/a" />
+		<element name="testSubmit" type="xpath" value="html/body/div[17]/div[2]/div[1]/div[3]/a[2]" />
+		<element name="testClose" type="xpath" value="html/body/div[17]/div[2]/div[1]/div[3]/a[1]" />
+		<element name="testOK" type="xpath" value="html/body/div[17]/div[2]/div[1]/div[3]/a" />
 		<element name="test" type="xpath"
 			value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[7]/td[3]/input" />
+		<element name="testMsg" type="xpath" value='//*[@id="corpusTestDialog"]/div/div/div/p' />
 		<element name="submitChange" type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
 		<element name="deleteSubmit" type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
 		<element name="deleteMsgClose" type="xpath" value='html/body/div[6]/div[2]/div[5]/div[3]/a' />
@@ -65,8 +66,10 @@
 		<element name="sortButton" type="xpath" value='//*[@id="subform"]/div[1]/div[1]/div/button' />
 		<element name="sortByChange" type="linkText" value="按修改日期排序" />
 		<element name="searchResultName" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[4]/span/span' />
-		<element name="searchResultContent" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[5]/span/span' />
+		<element name="searchResultContent" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[5]/span' />
 		<element name="searchResultAnswer" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[6]/span' />
+		<element name="searchBox" type="xpath" value='//*[@id="subform"]/div[1]/div[2]/div/input' />
+		<element name="searchSubmit" type="xpath" value='//*[@id="search"]' />
 	</page>
 	<page name="rulePage">
 		<element name="add" type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
@@ -90,27 +93,26 @@
 	<page name="slotPage">
 		<element name="add" type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
 		<element name="name" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[3]/td[3]/input' />
+			value='//*[@id="slotBox"]/div[1]/input[1]' />
 		<element name="datetime" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[1]' />
+			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[1]' />
 		<element name="timepoint" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/select/option[2]' />
+			value='//*[@id="slotBox"]/div[3]/div[2]/select/option[2]' />
 		<element name="duration" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/select/option[3]' />
+			value='//*[@id="slotBox"]/div[3]/div[2]/select/option[3]' />
 		<element name="internal" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[2]' />
+			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[2]' />
 		<element name="number" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[3]' />
+			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[3]' />
 		<element name="float" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[4]' />
+			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[4]' />
 		<element name="ext" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[5]/td[3]/div/select/option[5]' />
-		<element name="mainType" type="xpath" value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/input[1]' />
-		<element name="subType" type="xpath" value='//*[@id="pop_table"]/tbody/tr[5]/td[4]/div/input[2]' />
+			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[5]' />
 		<element name="min" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[7]/td[3]/input' />
+			value='//*[@id="slotBox"]/div[6]/input' />
 		<element name="max" type="xpath"
-			value='//*[@id="pop_table"]/tbody/tr[9]/td[3]/input' />
+			value='//*[@id="slotBox"]/div[7]/input' />
+		<element name="mainType" type="xpath" value='//*[@id="dropdownMenu1"]/input' />
 		<element name="submit" type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
 		<element name="changeSubmit" type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
 		<element name="deleteMsg" type="xpath"
@@ -184,6 +186,7 @@
 		<element name="详情" type="xpath" value='//*[@id="subDialog"]/div[2]/p/table/tbody/tr[1]/td[2]' />
 		<element name="新结果" type="linkText" value="新结果" />
 		<element name="旧结果" type="linkText" value="旧结果" />
+		<element name="语料" type="xpath" value='//*[@id="subDialog"]/div[2]/p/table/tbody/tr[1]/td[1]' />
 	</page>
 	<page name="searchPage">
 	    <element name="corpus" type="xpath" value='//*[@id="subform"]/div[2]/div[1]' />

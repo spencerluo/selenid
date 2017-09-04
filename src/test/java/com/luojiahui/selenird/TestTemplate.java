@@ -163,16 +163,12 @@ public class TestTemplate extends BaseTest{
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 		createApp(driver, "testtemplate");
-		driver.page("mainPage").getElement("subMsg").should(text("模块创建成功!"));
-		driver.page("mainPage").click("subMsgClose");
 		enterApp(driver, "testtemplate");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		deleteApp(driver, "testtemplate");
-		driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
-		driver.page("modelPage").click("closeDeleteMsg");
 		driver.getDriver().quit();
 	}
 

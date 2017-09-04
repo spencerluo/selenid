@@ -20,9 +20,7 @@ public class RuleModule extends BaseModule{
 	}
 	
 	public static void changeRule(MyWebDriver driver, String name, String content, String msg){
-		driver.page("mainPage").click("rule");
-		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[1]/img")).click();
-		driver.page("rulePage").clear("content").sendKeys("content", content).click("submit");
+		changeRule(driver, name, content);
 		assertSubMsg(driver, msg);
 	}
 	
