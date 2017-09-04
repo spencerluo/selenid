@@ -113,7 +113,7 @@ public class TestTemplate extends BaseTest{
 		addGrammar(driver, "grammar1", "<temp13(东西)>", "吃东西");
 		changeTemplate(driver, "temp13", "[=短句=]喝$(短句)");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("grammarName").equals("无"));
+		getNewOldResult(driver, "new").get("grammarName").should(text("无"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "after corpus delete or modify , grammar:<grammar1> can not match any corpus, it must have at least one corpus");
 	}
@@ -125,7 +125,7 @@ public class TestTemplate extends BaseTest{
 		changeGrammar(driver, "grammar2", "<temp14(东西)>", "闹东西","null", "提交成功!");
 		changeTemplate(driver, "temp14", "[=短句=]玩$(短句)");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("grammarName").equals("无"));
+		getNewOldResult(driver, "new").get("grammarName").should(text("无"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "提交成功!");
 	}

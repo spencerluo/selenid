@@ -70,8 +70,8 @@ public class TestRule extends BaseTest{
 		addGrammar(driver, "grammar1", "<rule6>电视", "打开电视");
 		changeRule(driver, "rule6", "(开启|打开|开下)<{action@=opens}>");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("slot_modifier").equals("opens"));
-		Assert.assertTrue(getNewOldResult(driver, "old").get("slot_modifier").equals("open"));
+		getNewOldResult(driver, "new").get("slot_modifier").should(text("opens"));
+		getNewOldResult(driver, "old").get("slot_modifier").should(text("open"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "提交成功!");
 		searchRule(driver, "rule6", "(开启|打开|开下)<{action@=opens}>");
@@ -90,8 +90,8 @@ public class TestRule extends BaseTest{
 		addGrammar(driver, "grammar2", "<rule8>音乐", "听音乐");
 		changeRule(driver, "rule8", "(听|听见)<{@=tings}>");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("global_modifier").equals("tings"));
-		Assert.assertTrue(getNewOldResult(driver, "old").get("global_modifier").equals("ting"));
+		getNewOldResult(driver, "new").get("global_modifier").should(text("tings"));
+		getNewOldResult(driver, "old").get("global_modifier").should(text("ting"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "提交成功!");
 		searchRule(driver, "rule8", "(听|听见)<{@=tings}>");
@@ -104,8 +104,8 @@ public class TestRule extends BaseTest{
 		addGrammar(driver, "grammar3", "做<rule9>", "做动作");
 		changeRule(driver, "rule9", "动作<{this=假动作}>");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("slotValue").equals("假动作"));
-		Assert.assertTrue(getNewOldResult(driver, "old").get("slotValue").equals("动作"));
+		getNewOldResult(driver, "new").get("slotValue").should(text("假动作"));
+		getNewOldResult(driver, "old").get("slotValue").should(text("动作"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "提交成功!");
 		searchRule(driver, "rule9", "动作<{this=假动作}>");
@@ -155,7 +155,7 @@ public class TestRule extends BaseTest{
 		addGrammar(driver, "grammar4", "<rule16>", "aa");
 		changeRule(driver, "rule16", "aabb");
 		driver.page("mainPage").click("详情");
-		Assert.assertTrue(getNewOldResult(driver, "new").get("grammarName").equals("无"));
+		getNewOldResult(driver, "new").get("grammarName").should(text("无"));
 		driver.page("rulePage").click("changeSubmit");
 		assertSubMsg(driver, "after corpus delete or modify , grammar:<grammar4> can not match any corpus, it must have at least one corpus");
 	}

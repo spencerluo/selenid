@@ -1,7 +1,9 @@
 package com.luojiahui.selenird;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
+import static com.luojiahui.selenird.BaseModule.assertSubMsg;
+import static com.luojiahui.selenird.GrammarModule.testGrammar;
 
 import org.testng.annotations.Test;
 
@@ -24,14 +26,20 @@ public class NewTest extends BaseTest {
 //		TemplateModule.changeTemplate(driver, "da", "[=s=]dfs", "提交成功!");
 //		TemplateModule.deleteTemplate(driver, "da", "删除成功!");
 		
-		try {
-//			GrammarModule.addGrammar(driver, "kd", "kad", "kad");
-//			GrammarModule.searchGrammar(driver, "kd", "kad", "语义");
-//			CorpusModule.searchResult(driver, "kad");
-//			CorpusModule.assertSearchResult(driver, "kad", "kd", "语义", "无");
-//			GrammarModule.deleteGrammar(driver, "kd", "删除成功!");
-		} finally {
-			// TODO: handle finally clause
+		SlotModule.addSlotExt(driver, "slot1");
+		refresh();
+		SlotModule.addSlotInternal(driver, "slot2");
+		refresh();
+		SlotModule.addSlotDuration(driver, "slot3");
+		refresh();
+		SlotModule.addSlotTimepoint(driver, "slot4");
+		refresh();
+		SlotModule.addSlotNumber(driver, "slot5");
+		refresh();
+		SlotModule.addSlotFloat(driver, "slot6");
+		refresh();
+		
+		
 			Thread.sleep(2000);
 			AppModule.deleteApp(driver, "app5");
 			driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
@@ -39,7 +47,6 @@ public class NewTest extends BaseTest {
 			Thread.sleep(2000);
 			driver.getDriver().quit();
 			Thread.sleep(2000);
-		}
 		
 	}
 }

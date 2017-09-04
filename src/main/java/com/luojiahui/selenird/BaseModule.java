@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.SelenideElement;
+
 import utils.MyWebDriver;
 
 public class BaseModule {
@@ -17,7 +19,7 @@ public class BaseModule {
 		driver.page("mainPage").click("subMsgClose");
 	}
 	
-	public static Map<String, String> getNewOldResult(MyWebDriver driver, String type){
+	public static Map<String, SelenideElement> getNewOldResult(MyWebDriver driver, String type){
 		if(type.equals("new")){
 			type = "newId";
 			driver.click("新结果");
@@ -25,13 +27,13 @@ public class BaseModule {
 			type = "oldId";
 			driver.click("旧结果");
 		}
-		String grammarName = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[1]")).text();
-		String global_modifier = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[2]")).text();
-		String slotName = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[3]")).text();
-		String slotType = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[4]")).text();
-		String slotValue = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[5]")).text();
-		String slot_modifier = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[6]")).text();
-		Map<String, String> map = new HashMap<String, String>();
+		SelenideElement grammarName = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[1]"));
+		SelenideElement global_modifier = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[2]"));
+		SelenideElement slotName = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[3]"));
+		SelenideElement slotType = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[4]"));
+		SelenideElement slotValue = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[5]"));
+		SelenideElement slot_modifier = $(By.xpath("//*[@id='"+type+"']/tbody/tr/td[6]"));
+		Map<String, SelenideElement> map = new HashMap<String, SelenideElement>();
 		map.put("grammarName", grammarName);
 		map.put("global_modifier", global_modifier);
 		map.put("slotName", slotName);
