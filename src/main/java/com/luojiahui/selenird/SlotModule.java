@@ -16,26 +16,26 @@ public class SlotModule extends BaseModule {
 		assertSubMsg(driver, msg);
 	}
 
-	public static void addSlotInternal(MyWebDriver driver, String name, String msg) {
+	public static void addSlotInternal(MyWebDriver driver, String name, String mainType, String msg) {
 		driver.page("mainPage").click("slot");
-		driver.page("slotPage").click("add").sendKeys("name", name).click("internal").click("submit");
+		driver.page("slotPage").click("add").sendKeys("name", name).click("internal").sendKeys("mainType", mainType).click("submit");
 		assertSubMsg(driver, msg);
 	}
 	
 	public static void addSlotInternal(MyWebDriver driver, String name){
-		addSlotInternal(driver, name, "提交成功!");
+		addSlotInternal(driver, name, "", "提交成功!");
 	}
 	
 
-	public static void addSlotExt(MyWebDriver driver, String name, String min, String max, String msg) {
+	public static void addSlotExt(MyWebDriver driver, String name, String mainType, String min, String max, String msg) {
 		driver.page("mainPage").click("slot");
-		driver.page("slotPage").click("add").sendKeys("name", name).click("ext").click("submit");
+		driver.page("slotPage").click("add").sendKeys("name", name).click("ext").sendKeys("mainType", mainType).click("submit");
 		driver.clear("min").sendKeys("min", min).clear("max").sendKeys("max", max).click("submit");
 		assertSubMsg(driver, msg);
 	}
 	
 	public static void addSlotExt(MyWebDriver driver, String name) {
-		addSlotExt(driver, name, "1", "20", "提交成功!");
+		addSlotExt(driver, name, "","1", "20", "提交成功!");
 	}
 	
 

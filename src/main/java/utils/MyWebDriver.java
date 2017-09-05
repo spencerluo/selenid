@@ -6,6 +6,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.source;
 import static utils.XmlUtils.getChildNodes;
 import static utils.XmlUtils.getNodes;
+import static com.codeborne.selenide.Selenide.open;
 
 import java.util.List;
 
@@ -25,7 +26,9 @@ public class MyWebDriver{
 		}
 		return driver;
 	}
-	
+	public void get(String absoluteUrl){
+		open(absoluteUrl);;
+	}
 	public MyWebDriver page(String pageName){
 		List<Node> pages = getNodes("page", "name", pageName);
 		if (!pages.isEmpty()) {
@@ -103,5 +106,9 @@ public class MyWebDriver{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void refresh(){
+		com.codeborne.selenide.Selenide.refresh();
 	}
 }

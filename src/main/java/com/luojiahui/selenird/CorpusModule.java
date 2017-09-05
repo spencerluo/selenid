@@ -5,8 +5,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
-import com.codeborne.selenide.Selenide;
-
 import utils.MyWebDriver;
 public class CorpusModule {
 	
@@ -25,6 +23,16 @@ public class CorpusModule {
 	public static void searchExistCorpus(MyWebDriver driver, String corpus, String grammar, String answer, String slot){
 		searchCorpus(driver, corpus);
 		assertSearchResult(driver, corpus, grammar, answer, slot);
+	}
+	
+	public static void deleteCorpus(MyWebDriver driver, String corpus, String msg){
+		driver.page("mainPage").click("corpus");
+		$(By.xpath("//*[@title='"+corpus+"']/following-sibling::*[5]/img")).click();
+		driver.sleep(1000);
+		driver.page("corpusPage").click("deleteSubmit");
+		driver.getElement("deleteMsg").should(text(msg));
+		driver.click("deleteMsgClose");
+		
 	}
 	
 }
