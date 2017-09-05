@@ -388,11 +388,11 @@ public class TestGrammar extends BaseTest {
 		changeGrammar(driver, "grammar51", "描述(故事|小说)", "描述战争", "null","描述战争: new corpus cannot match any grammar");
 	}
 	
-	@AfterMethod
+	@AfterMethod()
 	public void afterMethod() {
 		refresh();
 	}
-
+	
 	@BeforeClass
 	public void beforeClass() {
 		driver = MyWebDriver.getMyDriver();
@@ -405,7 +405,6 @@ public class TestGrammar extends BaseTest {
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		deleteApp(driver, "testgrammar");
 		driver.getDriver().quit();
 	}
 

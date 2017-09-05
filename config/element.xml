@@ -187,10 +187,7 @@
 		<element name="新结果" type="linkText" value="新结果" />
 		<element name="旧结果" type="linkText" value="旧结果" />
 		<element name="语料" type="xpath" value='//*[@id="subDialog"]/div[2]/p/table/tbody/tr[1]/td[1]' />
-<<<<<<< HEAD
-=======
 	    <element name="文档中心" type="xpath" value='//*[@id="main_menu"]/div/div' />
->>>>>>> refs/remotes/origin/master
 	</page>
 	<page name="searchPage">
 	    <element name="corpus" type="xpath" value='//*[@id="subform"]/div[2]/div[1]' />
