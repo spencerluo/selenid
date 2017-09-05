@@ -213,7 +213,7 @@ public class TestGrammar extends BaseTest {
 		getNewOldResult(driver, "old").get("slotValue").should(text("修"));
 		driver.page("grammarPage").click("submitChange");
 		assertSubMsg(driver, "提交成功!");
-		assertSearchResult(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>","语义");
+		searchGrammar(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>","语义");
 		searchExistCorpus(driver, "修人", "grammar29", "语义", "slot4：xiu");
 	}
 	
@@ -359,7 +359,7 @@ public class TestGrammar extends BaseTest {
 		getNewOldResult(driver, "old").get("grammarName").should(text("grammar48"));
 		driver.page("grammarPage").click("submitChange");
 		assertSubMsg(driver, "提交成功!");
-		assertSearchResult(driver, "grammar48", "说些故事","语义");
+		searchGrammar(driver, "grammar48", "说些故事","语义");
 		searchExistCorpus(driver, "说些故事", "grammar48", "语义", "无");
 	}
 	
@@ -396,7 +396,7 @@ public class TestGrammar extends BaseTest {
 	@BeforeClass
 	public void beforeClass() {
 		driver = MyWebDriver.getMyDriver();
-		login(driver);
+		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 		createApp(driver, "testgrammar");

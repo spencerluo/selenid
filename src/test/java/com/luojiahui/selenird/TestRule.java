@@ -183,7 +183,7 @@ public class TestRule extends BaseTest{
 	@BeforeClass
 	public void beforeClass() {
 		driver = MyWebDriver.getMyDriver();
-		login(driver);
+		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 		createApp(driver, "testrule");

@@ -2,6 +2,9 @@ package com.luojiahui.selenird;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static com.luojiahui.selenird.AppModule.deleteApp;
+import static com.luojiahui.selenird.AppModule.enterApp;
+import static com.luojiahui.selenird.AppModule.importApp;
 import static com.luojiahui.selenird.BaseModule.assertSubMsg;
 import static com.luojiahui.selenird.BaseModule.getNewOldResult;
 import static com.luojiahui.selenird.GrammarModule.addGrammar;
@@ -17,7 +20,7 @@ public class NewTest extends BaseTest {
 	@Test
 	public void f() throws InterruptedException {
 		MyWebDriver driver = MyWebDriver.getMyDriver();
-		LoginModule.login(driver);
+		LoginModule.login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 		AppModule.createApp(driver, "app5");
@@ -29,16 +32,17 @@ public class NewTest extends BaseTest {
 //		TemplateModule.changeTemplate(driver, "da", "[=s=]dfs", "提交成功!");
 //		TemplateModule.deleteTemplate(driver, "da", "删除成功!");
 		
-		addGrammar(driver, "grammar48", "说故事", "说故事" );
-		changeGrammar(driver, "grammar48", "说些故事", "说些故事");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("说故事"));
-		driver.click("详情");
-		getNewOldResult(driver, "new").get("grammarName").should(text(""));
-		getNewOldResult(driver, "old").get("grammarName").should(text("grammar48"));
-		driver.page("grammarPage").click("submitChange");
-		assertSubMsg(driver, "提交成功!");
-		refresh();
+		try {
+			importApp(driver, "joke");
+			driver.page("mainPage").getElement("subMsg").waitUntil(text("模块导入成功!"), 20000);
+			driver.click("subMsgClose");
+			enterApp(driver, "joke");
+			driver.page("mainPage").click("grammar");
+			org.testng.Assert.assertTrue(driver.getSource().contains("joke"));
+		} finally {
+			refresh();
+			deleteApp(driver, "joke");
+		}
 		
 		
 			Thread.sleep(2000);

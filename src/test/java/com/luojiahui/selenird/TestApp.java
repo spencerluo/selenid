@@ -1,8 +1,7 @@
 package com.luojiahui.selenird;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.refresh;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 import static com.luojiahui.selenird.AppModule.*;
 import static com.luojiahui.selenird.LoginModule.login;
 
@@ -13,6 +12,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import utils.MyWebDriver;
+import utils.ReadExcel;
 
 public class TestApp extends BaseTest {
 	MyWebDriver driver;
@@ -45,18 +45,23 @@ public class TestApp extends BaseTest {
 		}
 	}
 	
-	@Test(description = "导入")
-	public void testApp4() {
+	@Test(description = "导入",dataProvider="dp3")
+	public void testApp4(String appName, CharSequence grammar) {
 		try {
-			importApp(driver, "joke");
+			importApp(driver, appName);
+			driver.page("mainPage").getElement("subMsg").waitUntil(text("模块导入成功!"), 20000);
+			driver.click("subMsgClose");
+			enterApp(driver, appName);
+			driver.page("mainPage").click("grammar");
+			org.testng.Assert.assertTrue(driver.getSource().contains(grammar));
 		} finally {
 			refresh();
-			deleteApp(driver, "joke");
+			deleteApp(driver, appName);
 		}
 	}
 
 	@Test(description = "名称是数字、特殊字符、为空", dataProvider = "dp2")
-	public void testApp4(String name, String msg) {
+	public void testApp5(String name, String msg) {
 		driver.page("mainPage").click("changeApp");
 		driver.page("modelPage").click("add").sendKeys("addAppName", name).click("submit");
 		driver.getElement("nameErrorMsg").should(text(msg));
@@ -70,7 +75,7 @@ public class TestApp extends BaseTest {
 	@BeforeClass
 	public void beforeClass() {
 		driver = MyWebDriver.getMyDriver();
-		login(driver);
+		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
 	}
@@ -95,5 +100,10 @@ public class TestApp extends BaseTest {
 			new Object[] { "123", "名称是英文字母、汉字或下划线" }, 
 			new Object[] { "**" ,"名称是英文字母、汉字或下划线"}, 
 			new Object[] { "" , "名称不能为空"},};
+	}
+	
+	@DataProvider
+	public Object[][] dp3() {
+		return new ReadExcel("config\\grammar.xlsx","import").getData();
 	}
 }

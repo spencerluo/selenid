@@ -5,11 +5,11 @@ import utils.MyWebDriver;
 
 public class LoginModule {
 
-	private static int network = 2;
-	public static void login (MyWebDriver driver){
+	private static int network = 1;
+	public static void login (MyWebDriver driver, String username, String password){
 		if(network==1){
-			open("http://portal.olavoice.com/open/website/login/login_show");
-			driver.page("loginPage").sendKeys("username", "spencer").sendKeys("password", "asdD1234").sendKeys("yanzhengma", "abcd").click("submit");
+			driver.get("http://portal.olavoice.com/open/website/login/login_show");
+			driver.page("loginPage").sendKeys("username", username).sendKeys("password", password).sendKeys("yanzhengma", "abcd").click("submit");
 		}else{
 			open("https://cn.olami.ai/open/website/login/login_show");
 			driver.page("loginPage").sendKeys("username", "spencer").sendKeys("password", "asdD1234");
@@ -17,6 +17,5 @@ public class LoginModule {
 			driver.click("submit");
 		}
 	}
-	
 	
 }

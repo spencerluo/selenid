@@ -156,7 +156,7 @@
 			value='//*[@id="layui-layer2"]/div[3]/a' />
 		<element name="closeDeleteMsg" type="xpath"
 			value='//*[@id="layui-layer3"]/div[3]/a' />
-		<element name="deleteMsg" type="xpath" value='//*[@id="appdeleteResultDialog"]/div[2]/div[1]/p' />
+		<element name="deleteMsg" type="xpath" value='//*[@id="appdeleteResultDialog"]/div[2]/p' />
 		<element name="enterApp" type="id" value="enterApp" />
 		<element name="nameErrorMsg" type="xpath" value='//*[@id="appnameBox"]/div[1]/table/tbody/tr[2]/td[2]/div' />
 	</page>
@@ -187,6 +187,10 @@
 		<element name="新结果" type="linkText" value="新结果" />
 		<element name="旧结果" type="linkText" value="旧结果" />
 		<element name="语料" type="xpath" value='//*[@id="subDialog"]/div[2]/p/table/tbody/tr[1]/td[1]' />
+<<<<<<< HEAD
+=======
+	    <element name="文档中心" type="xpath" value='//*[@id="main_menu"]/div/div' />
+>>>>>>> refs/remotes/origin/master
 	</page>
 	<page name="searchPage">
 	    <element name="corpus" type="xpath" value='//*[@id="subform"]/div[2]/div[1]' />
@@ -194,5 +198,23 @@
 	    <element name="rule" type="xpath" value='//*[@id="subform"]/div[2]/div[3]' />
 	    <element name="slot" type="xpath" value='//*[@id="subform"]/div[2]/div[4]' />
 	    <element name="template" type="xpath" value='//*[@id="subform"]/div[2]/div[5]' />
+	    <element name="grammarName" type="xpath" value='//*[@id="grammarListResult"]/table/tbody/tr/td[4]/span/span' />
+	    <element name="grammarContent" type="xpath" value='//*[@id="grammarListResult"]/table/tbody/tr/td[5]/span' />
+	    <element name="grammarAnswer" type="xpath" value='//*[@id="grammarListResult"]/table/tbody/tr/td[6]/span/div' />
+	    <element name="ruleName" type="xpath" value='//*[@id="subform"]/div[3]/div[3]/div[2]/table/tbody/tr/td[4]/span/span'/>
+	    <element name="ruleContent" type="xpath" value='//*[@id="subform"]/div[3]/div[3]/div[2]/table/tbody/tr/td[5]/span' />
+	    <element name="slotName" type="xpath" value='//*[@id="subform"]/div[3]/div[4]/table/tbody/tr/td[4]/span/span'/>
+	    <element name="slotType" type="xpath" value='//*[@id="subform"]/div[3]/div[4]/table/tbody/tr/td[5]' />
+	    <element name="slotMin" type="xpath" value='//*[@id="subform"]/div[3]/div[4]/table/tbody/tr/td[8]' />
+	    <element name="slotMax" type="xpath" value='//*[@id="subform"]/div[3]/div[4]/table/tbody/tr/td[9]' />
+	    <element name="templateName" type="xpath" value='//*[@id="subform"]/div[3]/div[5]/table/tbody/tr/td[4]/span' />
+	    <element name="templateContent" type="xpath" value='//*[@id="subform"]/div[3]/div[5]/table/tbody/tr/td[5]/span' />
+	    <element name="corpusName" type="xpath" value='//*[@id="corpusListResult"]/table/tbody/tr/td[4]/span/span' />
+	    <element name="corpusGrammar" type="xpath" value='//*[@id="corpusListResult"]/table/tbody/tr/td[5]/span' />
+	    <element name="corpusAnswer" type="xpath" value='//*[@id="corpusListResult"]/table/tbody/tr/td[6]/span' />
+	    <element name="corpusSlot" type="xpath" value='//*[@id="corpusListResult"]/table/tbody/tr/td[7]/span' />
+	    <element name="grammarMatchName" type="xpath" value='//*[@id="grammarmatchListResult"]/table/tbody/tr/td[4]/span'/>
+	    <element name="grammarMatchContent" type="xpath" value='//*[@id="grammarmatchListResult"]/table/tbody/tr/td[5]/span'/>
+	    <element name="grammarMatchAnswer" type="xpath" value='//*[@id="grammarmatchListResult"]/table/tbody/tr/td[6]/span'/>
 	</page>
 </object>
