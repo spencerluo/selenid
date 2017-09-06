@@ -1,13 +1,5 @@
 package testcases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import utils.MyWebDriver;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -17,14 +9,24 @@ import static modules.AppModule.enterApp;
 import static modules.BaseModule.assertSubMsg;
 import static modules.BaseModule.getNewOldResult;
 import static modules.GrammarModule.addGrammar;
-import static modules.GrammarModule.changeGrammar;
 import static modules.LoginModule.login;
-import static modules.RuleModule.addRule;
-import static modules.SlotModule.*;
-import static modules.TemplateModule.addTemplate;
-import static modules.TemplateModule.changeTemplate;
-import static modules.TemplateModule.deleteTemplate;
-import static modules.TemplateModule.searchTemplate;
+import static modules.SlotModule.addSlotDuration;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotFloat;
+import static modules.SlotModule.addSlotInternal;
+import static modules.SlotModule.addSlotNumber;
+import static modules.SlotModule.addSlotTimepoint;
+import static modules.SlotModule.changeSlotTye;
+import static modules.SlotModule.deleteSlot;
+import static modules.SlotModule.searchSlotAndAssert;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import utils.MyWebDriver;
 
 public class TestSlot extends BaseTest {
 	MyWebDriver driver;
@@ -100,7 +102,7 @@ public class TestSlot extends BaseTest {
 	@Test(description = "修改slot类型,影响corpus")
 	public void testSlot11() {
 		addSlotExt(driver, "slot11", "", "1", "20", "提交成功!");
-		addGrammar(driver, "g2", "看<slot11>", "看电影");
+		addGrammar(driver, "g11", "看<slot11>", "看电影");
 		changeSlotTye(driver, "slot11", "number");
 		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
 		driver.getElement("语料").should(text("看电影"));

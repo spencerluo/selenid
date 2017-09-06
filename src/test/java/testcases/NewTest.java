@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import modules.AppModule;
 import modules.LoginModule;
+import modules.TemplateModule;
 import utils.MyWebDriver;
 
 public class NewTest extends BaseTest {
@@ -19,19 +20,10 @@ public class NewTest extends BaseTest {
 	public void f() throws InterruptedException {
 		driver = MyWebDriver.getMyDriver();
 		LoginModule.login(driver, "spencer", "asdD1234");
-		driver.page("loginPage").click("user").click("nli");
-		switchTo().window(1);
-		AppModule.createApp(driver, "app5");
-		AppModule.enterApp(driver, "app5");
 		
-//		TemplateModule.addTemplate(driver, "da", "[=s=]sd");
+		TemplateModule.addTemplate(driver, "da", "[=s=]sd");
 //		TemplateModule.changeTemplate(driver, "da", "[=s=]dfs", "提交成功!");
 //		TemplateModule.deleteTemplate(driver, "da", "删除成功!");
-		
-		addTemplate(driver, "temp16", "[=短句=]制作$(短句)");
-		deleteTemplate(driver, "temp16", "删除成功!");
-		driver.page("templatePage").sendKeys("searchBox", "temp16").click("searchSubmit");
-		Assert.assertTrue(!driver.getSource().contains("[=短句=]制作$(短句)"));
 		
 			
 		
@@ -39,11 +31,7 @@ public class NewTest extends BaseTest {
 	
 	@AfterMethod
 	public void after(){
-		try {
-			AppModule.deleteApp(driver, "app5");
-		} finally {
 			driver.sleep(2000);
-			driver.getDriver().quit();
-		}
+//			driver.getDriver().quit();
 	}
 }

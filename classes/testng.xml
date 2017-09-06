@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test name="GrammarEdit">
+  <test name="GrammarEdit" preserve-order="true">
       <!-- 
       <packages>
           <package name="testcases"></package>
@@ -15,8 +15,8 @@
           <class name="testcases.TestSlot"></class>
           <class name="testcases.TestTemplate"></class>
           <class name="testcases.TestGrammar"></class>
-          <class name="testcases.TestTemplate"></class>
           <class name="testcases.TestTest"></class>
+          <class name="testcases.TestApp"></class>
       </classes>
   </test>
   <listeners>
