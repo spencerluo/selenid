@@ -81,7 +81,7 @@ public class TestSlot extends BaseTest {
 	}
 	
 	@Test(description = "grammar不匹配ext类型的长度")
-	public void testSlot9(String name, String min, String max, String msg) {
+	public void testSlot9() {
 		addSlotExt(driver, "slot9", "", "3", "4", "提交成功!");
 		addGrammar(driver, "g1", "w<slot9>", "wasdef", "null", "new grammar:<g1> can not match any corpus");
 		driver.refresh();

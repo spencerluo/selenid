@@ -40,6 +40,7 @@ public class NewTest extends BaseTest {
 	@AfterMethod
 	public void after(){
 		AppModule.deleteApp(driver, "app5");
+		driver.sleep(2000);
 		driver.getDriver().quit();
 	}
 }

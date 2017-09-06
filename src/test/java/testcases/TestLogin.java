@@ -48,6 +48,7 @@ public class TestLogin extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
+		driver.sleep(2000);
 		driver.getDriver().quit();
 	}
 }

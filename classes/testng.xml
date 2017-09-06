@@ -7,10 +7,10 @@
       <!-- 
       <classes>
           <class name="testcases.NewTest"></class>
+          <class name="testcases.TestApp"></class>
+          <class name="testcases.TestLogin"></class>
       </classes>
       -->
   </test>
-  <listeners>
-      <listener class-name="utils.AllureReporterListener"></listener>
-  </listeners>
+
 </suite>

@@ -28,8 +28,9 @@ public class AppModule {
 		driver.sleep(1000);
 		$(By.xpath("//*[@value='" + appName + "']/following-sibling::*/a[4]")).click();
 		driver.sleep(1000);
-		driver.page("modelPage").click("delete").click("deleteTwice");
+		driver.page("modelPage").click("delete");
 		driver.sleep(1000);
+		driver.click("deleteTwice");
 		driver.page("modelPage").getElement("deleteMsg").should(text(msg));
 		driver.page("modelPage").click("closeDeleteMsg");
 	}
@@ -40,6 +41,7 @@ public class AppModule {
 
 	public static void importApp(MyWebDriver driver, String appName) {
 		driver.page("mainPage").click("changeApp");
+		driver.sleep(1000);
 		driver.page("modelPage").click("import");
 		$(By.xpath("//*[@value='" + appName + "']")).scrollTo().click();
 		driver.page("modelPage").click("导入");

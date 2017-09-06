@@ -45,7 +45,7 @@ public class TestApp extends BaseTest {
 		}
 	}
 	
-	@Test(description = "导入",dataProvider="dp3",enabled=true)
+	@Test(description = "导入",dataProvider="dp3",enabled=false)
 	public void testApp4(String appName, CharSequence grammar) {
 		try {
 			importApp(driver, appName);
@@ -83,8 +83,8 @@ public class TestApp extends BaseTest {
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		driver.getDriver().quit();
 		driver.sleep(2000);
+		driver.getDriver().quit();
 	}
 
 	@DataProvider
