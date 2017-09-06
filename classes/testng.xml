@@ -7,10 +7,16 @@
       </packages>
       -->
       <classes>
-          <class name="testcases.NewTest"></class>
           <class name="testcases.TestLogin"></class>
           <class name="testcases.TestCorpus"></class>
           <class name="testcases.TestSearch"></class>
+          <class name="testcases.TestCite"></class>
+          <class name="testcases.TestRule"></class>
+          <class name="testcases.TestSlot"></class>
+          <class name="testcases.TestTemplate"></class>
+          <class name="testcases.TestGrammar"></class>
+          <class name="testcases.TestTemplate"></class>
+          <class name="testcases.TestTest"></class>
       </classes>
   </test>
   <listeners>

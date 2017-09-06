@@ -22,7 +22,9 @@ public class TestCorpus extends BaseTest{
   public void testAddCorpus() {
 	  addGrammar(driver, "吃水果", "吃(苹果|香蕉)", "吃苹果");
 	  searchExistCorpus(driver, "吃苹果", "吃水果", "语义", "无");
-	  driver.page("corpusPage").clear("searchBox").sendKeys("searchBox", "吃香蕉").click("searchSubmit").click("corpusSubmit").click("subMsgClose");
+	  driver.page("corpusPage").clear("searchBox").sendKeys("searchBox", "吃香蕉").click("searchSubmit");
+	  driver.sleep(5000);
+	  driver.click("corpusSubmit").click("subMsgClose");
 	  searchExistCorpus(driver, "吃香蕉", "吃水果", "语义", "无");
   }
   
@@ -46,6 +48,7 @@ public class TestCorpus extends BaseTest{
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		try {
+			driver.refresh();
 			deleteApp(driver, "testcorpus");
 		} finally {
 			driver.sleep(2000);
