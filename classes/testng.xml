@@ -7,6 +7,10 @@
       </packages>
       -->
       <classes>
+          <!-- 
+          <class name="testcases.NewTest"></class>
+          <class name="testcases.NewTest1"></class>
+          -->
           <class name="testcases.TestLogin"></class>
           <class name="testcases.TestCorpus"></class>
           <class name="testcases.TestSearch"></class>

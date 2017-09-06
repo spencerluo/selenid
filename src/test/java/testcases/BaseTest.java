@@ -14,7 +14,5 @@ public class BaseTest {
 		Configuration.browser="chrome";
 		XmlUtils.init("classes\\element.xml");
 		Configuration.screenshots=false;
-		Configuration.holdBrowserOpen=true;
-		Configuration.reopenBrowserOnFail=false;
 	}
 }
