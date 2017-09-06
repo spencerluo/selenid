@@ -169,8 +169,12 @@ public class TestTemplate extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		deleteApp(driver, "testtemplate");
-		driver.getDriver().quit();
+		try {
+			deleteApp(driver, "testtemplate");
+		} finally {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 
 	@DataProvider

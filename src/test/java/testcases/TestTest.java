@@ -33,11 +33,15 @@ public class TestTest extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		driver.refresh();
-		driver.page("loginPage").click("user").click("nli");
-		switchTo().window(1);
-		deleteApp(driver, "testgrammar");
-		driver.getDriver().quit();
+		try {
+			driver.refresh();
+			driver.page("loginPage").click("user").click("nli");
+			switchTo().window(1);
+			deleteApp(driver, "testgrammar");
+		} finally {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 	
 	@DataProvider

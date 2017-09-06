@@ -45,7 +45,11 @@ public class TestCorpus extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		deleteApp(driver, "testcorpus");
-		driver.getDriver().quit();
+		try {
+			deleteApp(driver, "testcorpus");
+		} finally {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 }

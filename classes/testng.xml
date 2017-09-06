@@ -12,5 +12,8 @@
       </classes>
       -->
   </test>
+  <listeners>
+      <listener class-name="utils.AllureReporterListener"></listener>
+  </listeners>
 
 </suite>

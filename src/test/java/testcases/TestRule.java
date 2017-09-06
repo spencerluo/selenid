@@ -193,8 +193,12 @@ public class TestRule extends BaseTest{
 	
 	@AfterClass(alwaysRun=true)
 	public void afterClass(){
-		deleteApp(driver, "testrule");
-		driver.getDriver().quit();
+		try {
+			deleteApp(driver, "testrule");
+		} finally {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 	
 	  @DataProvider

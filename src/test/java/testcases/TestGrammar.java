@@ -415,8 +415,12 @@ public class TestGrammar extends BaseTest {
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		release(driver);
-		driver.getDriver().quit();
+		try {
+			release(driver);
+		} finally {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 
 	@DataProvider

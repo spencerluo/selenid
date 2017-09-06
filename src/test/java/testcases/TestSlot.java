@@ -144,8 +144,12 @@ public class TestSlot extends BaseTest {
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		deleteApp(driver, "testslot");
-		driver.getDriver().quit();
+		try {
+			deleteApp(driver, "testslot");
+		} catch (Exception e) {
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 
 	@DataProvider

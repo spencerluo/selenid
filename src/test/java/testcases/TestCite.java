@@ -81,9 +81,13 @@ public class TestCite extends BaseTest{
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
-		switchTo().window(1);
-		deleteApp(driver, "testcite");
-		driver.getDriver().quit();
+		try {
+			switchTo().window(1);
+			deleteApp(driver, "testcite");
+		}finally{
+			driver.sleep(2000);
+			driver.getDriver().quit();
+		}
 	}
 	
 	@DataProvider
