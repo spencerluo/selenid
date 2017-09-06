@@ -1,12 +1,10 @@
-package com.luojiahui.selenird;
+package testcases;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.switchTo;
-import static com.luojiahui.selenird.AppModule.createApp;
-import static com.luojiahui.selenird.AppModule.deleteApp;
-import static com.luojiahui.selenird.AppModule.enterApp;
-import static com.luojiahui.selenird.BaseModule.configureModules;
-import static com.luojiahui.selenird.LoginModule.login;
+import static modules.AppModule.deleteApp;
+import static modules.BaseModule.configureModules;
+import static modules.LoginModule.login;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,11 +14,11 @@ import org.testng.annotations.Test;
 import utils.MyWebDriver;
 import utils.ReadExcel;
 
-public class TestTest {
+public class TestTest extends BaseTest{
 	MyWebDriver driver;
 	
   @Test(dataProvider="dp")
-  public void testCorpus(String question, String result) {
+  public void testCorpus(String name, String question, String result) {
 	  driver.page("loginPage").clear("question").sendKeys("question", question).click("testSubmit");
 	  driver.getElement("answer").should(text(result));
   }
@@ -44,6 +42,6 @@ public class TestTest {
 	
 	@DataProvider
 	public Object[][] dp() {
-		return new ReadExcel("config\\grammar.xlsx","corpus").getData();
+		return new ReadExcel("classes\\grammar.xlsx","corpus").getData();
 	}
 }

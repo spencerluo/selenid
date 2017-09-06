@@ -1,11 +1,11 @@
-package com.luojiahui.selenird;
+package modules;
 import static com.codeborne.selenide.Selenide.open;
 
 import utils.MyWebDriver;
 
 public class LoginModule {
 
-	private static int network = 2;
+	private static int network = 1;
 	public static void login (MyWebDriver driver, String username, String password){
 		if(network==1){
 			driver.get("http://portal.olavoice.com/open/website/login/login_show");

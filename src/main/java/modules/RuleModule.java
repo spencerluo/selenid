@@ -1,4 +1,4 @@
-package com.luojiahui.selenird;
+package modules;
 
 import utils.MyWebDriver;
 

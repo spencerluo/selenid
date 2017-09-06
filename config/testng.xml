@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test name="GrammarEdit">
-      <!-- 
       <packages>
           <package name="testcases"></package>
       </packages>
-      -->
+      <!-- 
       <classes>
-          <class name="com.luojiahui.selenird.TestRule"></class>
-          <class name="com.luojiahui.selenird.TestTemplate"></class>
+          <class name="testcases.TestGrammar"></class>
+          <class name="testcases.TestTest"></class>
       </classes>
+      -->
   </test>
   <listeners>
       <listener class-name="utils.AllureReporterListener"></listener>

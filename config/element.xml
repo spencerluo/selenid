@@ -116,11 +116,15 @@
 		<element name="submit" type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
 		<element name="changeSubmit" type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
 		<element name="deleteMsg" type="xpath"
-		    value='html/body/div[6]/div[2]/div[9]/div[2]/div/div[2]/div[1]/p' />
+		    value='html/body/div[6]/div[2]/div[9]/div[2]/div/div[2]/p' />
 		<element name="deleteMsgClose" type="xpath" value="html/body/div[6]/div[2]/div[9]/div[3]/a" />
-		<element name="titleErrorMsg" type="xpath" value='//*[@id="pop_table"]/tbody/tr[4]/td[3]/div' />
-		<element name="mainTypeErrorMsg" type="xpath" value='//*[@id="pop_table"]/tbody/tr[6]/td[3]/div'/>
-		<element name="lengthErrorMsg" type="xpath" value='//*[@id="pop_table"]/tbody/tr[10]/td[3]/div' />
+		<element name="errorMsg" type="xpath" value='//*[@id="slotBox"]/div[8]' />
+		<element name="searchResultName" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[4]/span/span' />
+		<element name="searchResultType" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[5]' />
+		<element name="searchResultMin" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[8]' />
+		<element name="searchResultMax" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[9]' />
+		<element name="searchBox" type="xpath" value='//*[@id="subform"]/div[1]/div[2]/div/input' />
+		<element name="searchSubmit" type="xpath" value='//*[@id="search"]' />
 	</page>
 	<page name="templatePage">
 		<element name="add" type="xpath" value='//*[@id="subform"]/div[1]/div[2]/input' />
@@ -130,7 +134,7 @@
 			value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[5]/td[2]/textarea' />
 		<element name="submit" type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
 		<element name="changeSubmit" type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
-		<element name="deleteMsg" type="xpath" value='html/body/div[6]/div[2]/div[11]/div[2]/div/div[2]/div[1]/p' />
+		<element name="deleteMsg" type="xpath" value='html/body/div[6]/div[2]/div[11]/div[2]/div/div[2]/p' />
 		<element name="deleteMsgClose" type="xpath" value='html/body/div[6]/div[2]/div[11]/div[3]/a' />
 		<element name="titleErrorMsg" type="xpath" value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[4]/td[2]/div' />
 		<element name="contentErrorMsg" type="xpath" value='//*[@id="templateBox"]/div/div[1]/table/tbody/tr[6]/td[2]/div' />

@@ -1,9 +1,9 @@
-package com.luojiahui.selenird;
+package testcases;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.luojiahui.selenird.AppModule.*;
-import static com.luojiahui.selenird.LoginModule.login;
+import static modules.AppModule.*;
+import static modules.LoginModule.login;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -45,7 +45,7 @@ public class TestApp extends BaseTest {
 		}
 	}
 	
-	@Test(description = "导入",dataProvider="dp3")
+	@Test(description = "导入",dataProvider="dp3",enabled=true)
 	public void testApp4(String appName, CharSequence grammar) {
 		try {
 			importApp(driver, appName);
@@ -78,11 +78,13 @@ public class TestApp extends BaseTest {
 		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
+		driver.sleep(2000);
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		driver.getDriver().quit();
+		driver.sleep(2000);
 	}
 
 	@DataProvider
@@ -104,6 +106,6 @@ public class TestApp extends BaseTest {
 	
 	@DataProvider
 	public Object[][] dp3() {
-		return new ReadExcel("config\\grammar.xlsx","import").getData();
+		return new ReadExcel("classes\\grammar.xlsx","import").getData();
 	}
 }

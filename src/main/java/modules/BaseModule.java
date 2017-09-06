@@ -1,4 +1,4 @@
-package com.luojiahui.selenird;
+package modules;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.SelenideElement;
 

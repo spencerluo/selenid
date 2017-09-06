@@ -1,13 +1,8 @@
-package com.luojiahui.selenird;
-
-import utils.MyWebDriver;
+package modules;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import utils.MyWebDriver;
 
 public class SearchModule {
 

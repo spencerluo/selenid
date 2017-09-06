@@ -1,22 +1,22 @@
-package com.luojiahui.selenird;
+package testcases;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.switchTo;
-import static com.luojiahui.selenird.AppModule.createApp;
-import static com.luojiahui.selenird.AppModule.deleteApp;
-import static com.luojiahui.selenird.AppModule.enterApp;
-import static com.luojiahui.selenird.BaseModule.assertSubMsg;
-import static com.luojiahui.selenird.BaseModule.getNewOldResult;
-import static com.luojiahui.selenird.GrammarModule.addGrammar;
-import static com.luojiahui.selenird.LoginModule.login;
-import static com.luojiahui.selenird.RuleModule.addRule;
-import static com.luojiahui.selenird.RuleModule.changeRule;
-import static com.luojiahui.selenird.RuleModule.deleteRule;
-import static com.luojiahui.selenird.RuleModule.searchRule;
-import static com.luojiahui.selenird.SlotModule.addSlotExt;
-import static com.luojiahui.selenird.SlotModule.addSlotInternal;
-import static com.luojiahui.selenird.TemplateModule.addTemplate;
+import static modules.AppModule.createApp;
+import static modules.AppModule.deleteApp;
+import static modules.AppModule.enterApp;
+import static modules.BaseModule.assertSubMsg;
+import static modules.BaseModule.getNewOldResult;
+import static modules.GrammarModule.addGrammar;
+import static modules.LoginModule.login;
+import static modules.RuleModule.addRule;
+import static modules.RuleModule.changeRule;
+import static modules.RuleModule.deleteRule;
+import static modules.RuleModule.searchRule;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotInternal;
+import static modules.TemplateModule.addTemplate;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -186,17 +186,14 @@ public class TestRule extends BaseTest{
 		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
+		driver.sleep(2000);
 		createApp(driver, "testrule");
-		driver.page("mainPage").getElement("subMsg").should(text("模块创建成功!"));
-		driver.page("mainPage").click("subMsgClose");
 		enterApp(driver, "testrule");
 	}
 	
 	@AfterClass(alwaysRun=true)
 	public void afterClass(){
 		deleteApp(driver, "testrule");
-		driver.page("modelPage").getElement("deleteMsg").should(text("删除成功!"));
-		driver.page("modelPage").click("closeDeleteMsg");
 		driver.getDriver().quit();
 	}
 	

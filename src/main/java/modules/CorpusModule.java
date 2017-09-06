@@ -1,4 +1,4 @@
-package com.luojiahui.selenird;
+package modules;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;

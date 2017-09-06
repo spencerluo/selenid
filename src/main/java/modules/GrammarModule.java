@@ -1,12 +1,10 @@
-package com.luojiahui.selenird;
+package modules;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static modules.CorpusModule.searchExistCorpus;
 
 import org.openqa.selenium.By;
-
-import com.codeborne.selenide.Selenide;
-import static com.luojiahui.selenird.CorpusModule.*;
 
 import utils.MyWebDriver;
 

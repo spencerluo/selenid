@@ -1,28 +1,36 @@
-package com.luojiahui.selenird;
-
-import org.testng.annotations.Test;
-
-import utils.MyWebDriver;
-import static com.luojiahui.selenird.AppModule.*;
-import static com.luojiahui.selenird.BaseModule.assertSubMsg;
-import static com.luojiahui.selenird.BaseModule.getNewOldResult;
-import static com.luojiahui.selenird.LoginModule.*;
-import static com.luojiahui.selenird.RuleModule.*;
-import static com.luojiahui.selenird.SlotModule.*;
-import static com.luojiahui.selenird.TemplateModule.*;
-import static com.luojiahui.selenird.CorpusModule.*;
-
-import static com.luojiahui.selenird.GrammarModule.*;
-import static com.luojiahui.selenird.CorpusModule.*;
-import org.testng.annotations.DataProvider;
+package testcases;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.Selenide.switchTo;
+import static modules.AppModule.createApp;
+import static modules.AppModule.enterApp;
+import static modules.BaseModule.assertSubMsg;
+import static modules.BaseModule.getNewOldResult;
+import static modules.BaseModule.release;
+import static modules.CorpusModule.searchExistCorpus;
+import static modules.GrammarModule.addGrammar;
+import static modules.GrammarModule.addGrammarAndAssert;
+import static modules.GrammarModule.changeGrammar;
+import static modules.GrammarModule.changeGrammarAndAssert;
+import static modules.GrammarModule.deleteGrammar;
+import static modules.GrammarModule.searchGrammar;
+import static modules.GrammarModule.testGrammar;
+import static modules.LoginModule.login;
+import static modules.RuleModule.addRule;
+import static modules.SlotModule.addSlotDuration;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotFloat;
+import static modules.SlotModule.addSlotInternal;
+import static modules.SlotModule.addSlotNumber;
+import static modules.SlotModule.addSlotTimepoint;
+import static modules.TemplateModule.addTemplate;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import utils.MyWebDriver;
 
@@ -115,7 +123,8 @@ public class TestGrammar extends BaseTest {
 	
 	@Test(description = "内容引用grammar")
 	public void testGrammar15() {
-		addGrammarAndAssert(driver, "grammartemp", "grammartemp", "grammartemp","无");
+		addGrammar(driver, "grammartemp", "grammartemp", "grammartemp");
+		addGrammarAndAssert(driver, "grammar15", "<grammartemp>s", "grammartemps","无");
 	}
 	
 	@Test(description = "内容引用slot_ext")
@@ -180,7 +189,7 @@ public class TestGrammar extends BaseTest {
 		changeGrammarAndAssert(driver, "grammar25", "<chang{slot1=$}>戏曲", "要唱戏曲", "slot1：要唱");
 	}
 	
-	@Test(description = "内容引用间接赋值的Slot")
+	@Test(description = "内容引用Slot配合+=")
 	public void testGrammar26() {
 		addSlotInternal(driver, "slot2");
 		addGrammarAndAssert(driver, "grammar26_1", "听广播<{slot2+=听}><{slot2+=广}><{slot2+=播}>", "听广播", "slot2：听广播");
@@ -313,7 +322,7 @@ public class TestGrammar extends BaseTest {
 		addGrammarAndAssert(driver, "grammar41", "你还好[吗]", "！！！你还好，，，吗。。。" ,"无");
 	}
 	
-	@Test(description = " repeater 规则")
+	@Test(description = "repeater 规则")
 	public void testGrammar42() {
 		addGrammarAndAssert(driver, "grammar42", "好累(哈|啊|吧|呵)*", "好累啊啊啊" ,"无");
 	}
@@ -399,12 +408,14 @@ public class TestGrammar extends BaseTest {
 		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
+		driver.sleep(2000);
 		createApp(driver, "testgrammar");
 		enterApp(driver, "testgrammar");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
+		release(driver);
 		driver.getDriver().quit();
 	}
 

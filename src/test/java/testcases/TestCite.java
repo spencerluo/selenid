@@ -1,22 +1,21 @@
-package com.luojiahui.selenird;
+package testcases;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.switchTo;
-import static com.luojiahui.selenird.AppModule.createApp;
-import static com.luojiahui.selenird.AppModule.deleteApp;
-import static com.luojiahui.selenird.AppModule.enterApp;
-import static com.luojiahui.selenird.BaseModule.configureModules;
-import static com.luojiahui.selenird.BaseModule.release;
-import static com.luojiahui.selenird.GrammarModule.addGrammar;
-import static com.luojiahui.selenird.LoginModule.login;
-import static com.luojiahui.selenird.SlotModule.addSlotDuration;
-import static com.luojiahui.selenird.SlotModule.addSlotExt;
-import static com.luojiahui.selenird.SlotModule.addSlotFloat;
-import static com.luojiahui.selenird.SlotModule.addSlotNumber;
-import static com.luojiahui.selenird.SlotModule.addSlotTimepoint;
+import static modules.AppModule.createApp;
+import static modules.AppModule.deleteApp;
+import static modules.AppModule.enterApp;
+import static modules.BaseModule.configureModules;
+import static modules.BaseModule.release;
+import static modules.GrammarModule.addGrammar;
+import static modules.LoginModule.login;
+import static modules.SlotModule.addSlotDuration;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotFloat;
+import static modules.SlotModule.addSlotNumber;
+import static modules.SlotModule.addSlotTimepoint;
 
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -75,6 +74,7 @@ public class TestCite extends BaseTest{
 		login(driver, "spencer", "asdD1234");
 		driver.page("loginPage").click("user").click("nli");
 		switchTo().window(1);
+		driver.sleep(2000);
 		createApp(driver, "testcite");
 		enterApp(driver, "testcite");
 	}
@@ -102,11 +102,11 @@ public class TestCite extends BaseTest{
 	
 	@DataProvider
 	public Object[][] dp2() {
-		return new ReadExcel("config\\grammar.xlsx","cite_grammar").getData();
+		return new ReadExcel("classes\\grammar.xlsx","cite_grammar").getData();
 	}
 	
 	@DataProvider
 	public Object[][] dp3() {
-		return new ReadExcel("config\\grammar.xlsx","cite_corpus").getData();
+		return new ReadExcel("classes\\grammar.xlsx","cite_corpus").getData();
 	}
 }

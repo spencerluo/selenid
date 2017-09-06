@@ -2,17 +2,16 @@ package utils;
 
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.source;
 import static utils.XmlUtils.getChildNodes;
 import static utils.XmlUtils.getNodes;
-import static com.codeborne.selenide.Selenide.open;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.w3c.dom.Node;
 
@@ -87,7 +86,7 @@ public class MyWebDriver{
 	public MyWebDriver click(String elementName){
 		try {
 			getElement(elementName).click();
-		} catch (Exception e) {
+		} catch (AssertionError e) {
 			throw new NoSuchElementException("{"+pageName+" __ "+elementName+"} is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();
@@ -105,7 +104,7 @@ public class MyWebDriver{
 	public MyWebDriver clear(String elementName){
 		try {
 			getElement(elementName).clear();
-		} catch (Exception e) {
+		} catch (AssertionError e) {
 			throw new NoSuchElementException("{"+pageName+" __ "+elementName+"} is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();

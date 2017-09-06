@@ -1,4 +1,4 @@
-package com.luojiahui.selenird;
+package modules;
 
 import utils.MyWebDriver;
 
@@ -11,7 +11,10 @@ public class AppModule {
 
 	public static void createApp(MyWebDriver driver, String appName, String msg) {
 		driver.page("mainPage").click("changeApp");
-		driver.page("modelPage").click("add").sendKeys("addAppName", appName).click("submit");
+		driver.sleep(2000);
+		driver.page("modelPage").click("add");
+		driver.sendKeys("addAppName", appName);
+		driver.click("submit");
 		driver.page("mainPage").getElement("subMsg").should(text(msg));
 		driver.page("mainPage").click("subMsgClose");
 	}
@@ -22,6 +25,7 @@ public class AppModule {
 
 	public static void deleteApp(MyWebDriver driver, String appName, String msg) {
 		driver.page("mainPage").click("changeApp");
+		driver.sleep(1000);
 		$(By.xpath("//*[@value='" + appName + "']/following-sibling::*/a[4]")).click();
 		driver.sleep(1000);
 		driver.page("modelPage").click("delete").click("deleteTwice");

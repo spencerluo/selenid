@@ -1,8 +1,8 @@
-package com.luojiahui.selenird;
+package testcases;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.switchTo;
-import static com.luojiahui.selenird.LoginModule.login;
+import static modules.LoginModule.login;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
