@@ -13,17 +13,19 @@ import modules.AppModule;
 import modules.LoginModule;
 import modules.TemplateModule;
 import utils.MyWebDriver;
-
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.*;
 public class NewTest extends BaseTest {
 	MyWebDriver driver;
 	@Test
 	public void f() throws InterruptedException {
-		driver = MyWebDriver.getMyDriver();
-		LoginModule.login(driver, "spencer", "asdD1234");
-		
-		TemplateModule.addTemplate(driver, "da", "[=s=]sd");
-//		TemplateModule.changeTemplate(driver, "da", "[=s=]dfs", "提交成功!");
-//		TemplateModule.deleteTemplate(driver, "da", "删除成功!");
+//		driver = MyWebDriver.getMyDriver();
+//		LoginModule.login(driver, "spencer", "asdD1234");
+//		
+//		driver.getDriver().close();
+//		driver.get("http://www.baidu.com");
+		open("http://www.baidu.com");
+//		getWebDriver().quit();;
 		
 			
 		
@@ -31,7 +33,6 @@ public class NewTest extends BaseTest {
 	
 	@AfterMethod
 	public void after(){
-			driver.sleep(2000);
 //			driver.getDriver().quit();
 	}
 }

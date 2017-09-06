@@ -45,7 +45,7 @@ public class TestApp extends BaseTest {
 		}
 	}
 	
-	@Test(description = "导入",dataProvider="dp3",enabled=false)
+	@Test(description = "导入",dataProvider="dp3",enabled=true)
 	public void testApp4(String appName, CharSequence grammar) {
 		try {
 			importApp(driver, appName);
