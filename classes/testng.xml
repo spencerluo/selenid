@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="GrammarEdit">
+      <!-- 
+      <packages>
+          <package name="testcases"></package>
+      </packages>
+      -->
+      <classes>
+          <class name="testcases.NewTest"></class>
+      </classes>
+  </test>
+  <listeners>
+      <listener class-name="utils.AllureReporterListener"></listener>
+  </listeners>
+</suite>
