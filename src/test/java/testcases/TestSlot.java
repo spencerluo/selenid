@@ -148,7 +148,7 @@ public class TestSlot extends BaseTest {
 	public void afterClass() {
 		try {
 			deleteApp(driver, "testslot");
-		} catch (Exception e) {
+		} finally {
 			driver.sleep(2000);
 			driver.getDriver().quit();
 		}

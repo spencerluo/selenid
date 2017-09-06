@@ -84,7 +84,7 @@ public class TestSearch extends BaseTest{
 	public void afterClass() {
 		try {
 			deleteApp(driver, "testsearch");
-		} catch (Exception e) {
+		} finally{
 			driver.sleep(2000);
 			driver.getDriver().quit();
 		}
