@@ -5,7 +5,7 @@ import utils.MyWebDriver;
 
 public class LoginModule {
 
-	private static int network = 1;
+	private static int network = 2;
 	public static void login (MyWebDriver driver, String username, String password){
 		if(network==1){
 			driver.get("http://portal.olavoice.com/open/website/login/login_show");

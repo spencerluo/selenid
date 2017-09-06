@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <object>
 	<page name="loginPage">
-		<element name="username" type="id" value="usernames" />
+		<element name="username" type="id" value="username" />
 		<element name="password" type="id" value="password" />
 		<element name="yanzhengma" type="name" value="vcode" />
 		<element name="submit" type="xpath" value='/html/body/div[6]/div[4]/form/div[4]/button' />
