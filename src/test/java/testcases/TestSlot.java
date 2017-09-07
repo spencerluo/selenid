@@ -108,9 +108,9 @@ public class TestSlot extends BaseTest {
 		driver.getElement("语料").should(text("看电影"));
 		driver.click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text(""));
-		getNewOldResult(driver, "old").get("grammarName").should(text("g2"));
+		getNewOldResult(driver, "old").get("grammarName").should(text("g11"));
 		driver.page("grammarPage").click("submitChange");
-		assertSubMsg(driver, "after corpus delete or modify , grammar:<g2> can not match any corpus, it must have at least one corpus.");
+		assertSubMsg(driver, "after corpus delete or modify , grammar:<g11> can not match any corpus, it must have at least one corpus.");
 	}
 	
 	@Test(description="正常删除")

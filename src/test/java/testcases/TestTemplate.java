@@ -112,6 +112,8 @@ public class TestTemplate extends BaseTest{
 		addTemplate(driver, "temp13", "[=短句=]吃$(短句)");
 		addGrammar(driver, "grammar1", "<temp13(东西)>", "吃东西");
 		changeTemplate(driver, "temp13", "[=短句=]喝$(短句)");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("吃东西"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text("无"));
 		driver.page("rulePage").click("changeSubmit");
@@ -124,6 +126,8 @@ public class TestTemplate extends BaseTest{
 		addGrammar(driver, "grammar2", "<temp14(东西)>", "玩东西");
 		changeGrammar(driver, "grammar2", "<temp14(东西)>", "闹东西","null", "提交成功!");
 		changeTemplate(driver, "temp14", "[=短句=]玩$(短句)");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("闹东西"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text("无"));
 		driver.page("rulePage").click("changeSubmit");

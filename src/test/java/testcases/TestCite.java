@@ -64,6 +64,7 @@ public class TestCite extends BaseTest{
 		String[] questions = { Q1, Q2 };
 		for (String question : questions) {
 			driver.page("loginPage").clear("question").sendKeys("question", question).click("testSubmit");
+			driver.sleep(3000);
 		}
 		driver.getElement("answer").should(text(result));
 	}

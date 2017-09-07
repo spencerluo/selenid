@@ -69,6 +69,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule6", "(开启|打开|开下)<{action@=open}>");
 		addGrammar(driver, "grammar1", "<rule6>电视", "打开电视");
 		changeRule(driver, "rule6", "(开启|打开|开下)<{action@=opens}>");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("打开电视"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slot_modifier").should(text("opens"));
 		getNewOldResult(driver, "old").get("slot_modifier").should(text("open"));
@@ -89,6 +91,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule8", "(听|听见)<{@=ting}>");
 		addGrammar(driver, "grammar2", "<rule8>音乐", "听音乐");
 		changeRule(driver, "rule8", "(听|听见)<{@=tings}>");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("听音乐"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("global_modifier").should(text("tings"));
 		getNewOldResult(driver, "old").get("global_modifier").should(text("ting"));
@@ -103,6 +107,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule9", "动作<{this=动作}>");
 		addGrammar(driver, "grammar3", "做<rule9>", "做动作");
 		changeRule(driver, "rule9", "动作<{this=假动作}>");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("做动作"));
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slotValue").should(text("假动作"));
 		getNewOldResult(driver, "old").get("slotValue").should(text("动作"));
