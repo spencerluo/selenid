@@ -96,11 +96,6 @@ public class TestCite extends BaseTest{
 			return new Object[][] { 
 				new Object[] { "人物" }, 
 				new Object[] { "地点" }, 
-				new Object[] { "州"}, 
-				new Object[] { "国家"}, 
-				new Object[] { "省"}, 
-				new Object[] { "城市"}, 
-				new Object[] { "区县"}, 
 			};
 		}
 	

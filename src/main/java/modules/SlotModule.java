@@ -4,15 +4,15 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
-
+import static modules.BaseModule.assertSubMsg;
 import utils.MyWebDriver;
 
-public class SlotModule extends BaseModule {
+public class SlotModule{
 
 
 	public static void addSlotInternal(MyWebDriver driver, String name, String mainType, String msg) {
 		driver.page("mainPage").click("slot");
-		driver.page("slotPage").click("add").sendKeys("name", name).click("internal").sendKeys("mainType", mainType).click("submit");
+		driver.page("slotPage").click("add").sendKeys("name", name).click("internal").click("mainTypeButton").sendKeys("mainType", mainType).click("submit");
 		assertSubMsg(driver, msg);
 	}
 	
@@ -29,7 +29,7 @@ public class SlotModule extends BaseModule {
 		driver.page("mainPage").click("slot");
 		driver.page("slotPage").click("add").sendKeys("name", name).click("ext");
 		if(mainType!=null){
-			driver.sendKeys("mainType", mainType);
+			driver.click("mainTypeButton").sendKeys("mainType", mainType);
 		}
 		if(assertType!=null){
 			$(By.xpath("//*[@value='"+assertType+"']"));

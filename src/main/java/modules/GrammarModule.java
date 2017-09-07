@@ -3,12 +3,12 @@ package modules;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static modules.CorpusModule.searchExistCorpus;
-
+import static modules.BaseModule.assertSubMsg;
 import org.openqa.selenium.By;
 
 import utils.MyWebDriver;
 
-public class GrammarModule extends BaseModule{
+public class GrammarModule{
 
 	public static void addGrammar(MyWebDriver driver, String name, String content, String corpus, String answer){
 		driver.page("mainPage").click("grammar");
@@ -105,4 +105,24 @@ public class GrammarModule extends BaseModule{
 		driver.page("grammarPage").getElement("deleteMsg").should(text(msg));
 		driver.page("grammarPage").click("deleteMsgClose");
 	}
+	
+	public static void quickAddRule(MyWebDriver driver, String name, String content){
+		driver.page("grammarPage").click("quickAddRule");
+		driver.page("rulePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
+		assertDeleteMsg(driver, "提交成功!");
+	}
+	
+	public static void quickAddSlot(MyWebDriver driver, String name,String type){
+		driver.page("grammarPage").click("quickAddSlot");
+		driver.page("slotPage").click("add").sendKeys("name", name).click(type).click("submit");
+		assertSubMsg(driver, "提交成功!");
+	}
+	
+	public static void quickAddTemplate(MyWebDriver driver, String name, String content) throws Exception{
+		driver.page("grammarPage").click("quickAddTemplate");
+		driver.page("templatePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
+		assertSubMsg(driver, "提交成功!");
+	}
+	
+	
 }

@@ -397,6 +397,12 @@ public class TestGrammar extends BaseTest {
 		changeGrammar(driver, "grammar51", "描述(故事|小说)", "描述战争", "null","描述战争: new corpus cannot match any grammar");
 	}
 	
+	@Test(description="快速添加和编辑rule")
+	public void testGrammar52(){
+		driver.page("mainPage").click("grammar");
+		driver.page("grammarPage").click("add");
+	}
+	
 	@AfterMethod()
 	public void afterMethod() {
 		refresh();

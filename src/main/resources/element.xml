@@ -62,7 +62,19 @@
 		<element name="quickAddSlot" type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[3]' />
 		<element name="quickAddTemplate" type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[2]' />
 		<element name="quickSearch" type="xpath" value='//*[@id="grammarBox"]/div/div[1]/input[1]' />
-		<element name="quickEdit" type="id" value="ruleslotedit" />
+		<element name="quickSearchRuleEdit" type="xpath" value='//*[@id="rule-tab"]/div[3]/input' />
+		<element name="quickSearchTemplateEdit" type="xpath" value='//*[@id="template-tab"]/div[3]/input' />
+		<element name="quickSearchSlotEdit" type="xpath" value='//*[@id="slot-tab"]/div[3]/input' />
+		<element name="quickSearchBox" type="xpath" value='//*[@id="search-input"]' />
+		<element name="quickSearchRule" type="xpath" value='//*[@id="myTab"]/li[1]/a' />
+		<element name="quickSearchSlot" type="xpath" value='//*[@id="myTab"]/li[2]/a' />
+		<element name="quickSearchTemplate" type="xpath" value='//*[@id="myTab"]/li[3]/a' />
+		<element name="quickSearchResultRuleName" type="xpath" value='//*[@id="rule-tab"]/div[1]/ul/li/span' />
+		<element name="quickSearchResultRuleContent" type="xpath" value='//*[@id="rule-tab"]/div[2]' />
+		<element name="quickSearchResultSlotName" type="xpath" value='//*[@id="slot-tab"]/div[1]/ul/li/span' />
+		<element name="quickSearchResultSlotContent" type="xpath" value='//*[@id="slot-tab"]/div[2]' />
+		<element name="quickSearchResultTemplateName" type="xpath" value='//*[@id="template-tab"]/div[1]/ul/li/span' />
+		<element name="quickSearchResultTemplateContent" type="xpath" value='//*[@id="template-tab"]/div[2]' />
 		<element name="sortButton" type="xpath" value='//*[@id="subform"]/div[1]/div[1]/div/button' />
 		<element name="sortByChange" type="linkText" value="按修改日期排序" />
 		<element name="searchResultName" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[4]/span/span' />
@@ -109,10 +121,12 @@
 		<element name="ext" type="xpath"
 			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[5]' />
 		<element name="min" type="xpath"
-			value='//*[@id="slotBox"]/div[6]/input' />
+			value='//*[@id="slotBox"]/div[4]/input' />
 		<element name="max" type="xpath"
-			value='//*[@id="slotBox"]/div[7]/input' />
+			value='//*[@id="slotBox"]/div[5]/input' />
 		<element name="mainType" type="xpath" value='//*[@id="dropdownMenu1"]/input' />
+		<element name="mainTypeButton" type="xpath" value='//*[@id="slotBox"]/div[6]/button' />
+		<element name="assertTypeButton" type="xpath" value='//*[@id="slotBox"]/div[7]/button' />
 		<element name="submit" type="xpath" value='//*[contains(@id,"layui-layer")][1]/div[3]/a[2]' />
 		<element name="changeSubmit" type="xpath" value='html/body/div[6]/div[2]/div[13]/div[3]/a[2]' />
 		<element name="deleteMsg" type="xpath"

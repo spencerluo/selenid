@@ -4,10 +4,10 @@ import utils.MyWebDriver;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-
+import static modules.BaseModule.assertSubMsg;
 import org.openqa.selenium.By;
 
-public class RuleModule extends BaseModule{
+public class RuleModule{
 
 	public static void addRule(MyWebDriver driver, String name, String content, String msg){
 		driver.page("mainPage").click("rule");

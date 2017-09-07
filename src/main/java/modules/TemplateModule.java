@@ -4,10 +4,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
-
+import static modules.BaseModule.assertSubMsg;
 import utils.MyWebDriver;
 
-public class TemplateModule extends BaseModule{
+public class TemplateModule{
 
 	public static void addTemplate(MyWebDriver driver, String name, String content, String msg){
 		driver.page("mainPage").click("template");
