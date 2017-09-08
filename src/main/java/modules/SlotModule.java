@@ -89,6 +89,7 @@ public class SlotModule{
 	public static void deleteSlot(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("slot");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[7]/div[2]/img")).click();
+		driver.sleep(1000);
 		driver.page("slotPage").click("submit");
 		assertDeleteMsg(driver, msg);
 	}

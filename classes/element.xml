@@ -38,8 +38,8 @@
 		<element name="content" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[5]/td[2]/textarea"/>
 		<element name="corpus" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[7]/td[2]/input" />
 		<element name="answer1" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[9]/td[2]/div[2]/textarea" />
-		<element name="answer2" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[10]/td[2]/div[2]/textarea" />
-		<element name="answer3" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[11]/td[2]/div[2]/textarea" />
+		<element name="answer2" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[10]/td[2]/div/textarea" />
+		<element name="answer3" type="xpath" value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[11]/td[2]/div/textarea" />
 		<element name="addAnswers" type="xpath" value='//*[@id="grammarBox"]/div/div[2]/table/tbody/tr[9]/td[3]/div/img' />
 		<element name="yuyi" type="xpath"
 			value="//*[@id='grammarBox']/div/div[2]/table/tbody/tr[9]/td[2]/div[1]/label[2]/input" />

@@ -7,20 +7,19 @@
       </packages>
       -->
       <classes>
+          <class name="testcases.TestRule"></class>
           <!-- 
-          <class name="testcases.NewTest"></class>
-          <class name="testcases.NewTest1"></class>
-          -->
           <class name="testcases.TestLogin"></class>
           <class name="testcases.TestCorpus"></class>
           <class name="testcases.TestSearch"></class>
           <class name="testcases.TestCite"></class>
           <class name="testcases.TestRule"></class>
           <class name="testcases.TestSlot"></class>
-          <class name="testcases.TestTemplate"></class>
+          <class name="testcases.TestTemplate"></class>z
           <class name="testcases.TestGrammar"></class>
           <class name="testcases.TestTest"></class>
           <class name="testcases.TestApp"></class>
+          -->
       </classes>
   </test>
   <listeners>

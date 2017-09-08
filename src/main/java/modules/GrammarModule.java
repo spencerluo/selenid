@@ -1,10 +1,13 @@
 package modules;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static modules.CorpusModule.searchExistCorpus;
 import static modules.BaseModule.assertSubMsg;
 import org.openqa.selenium.By;
+
+import com.codeborne.selenide.SelenideElement;
 
 import utils.MyWebDriver;
 
@@ -108,21 +111,69 @@ public class GrammarModule{
 	
 	public static void quickAddRule(MyWebDriver driver, String name, String content){
 		driver.page("grammarPage").click("quickAddRule");
-		driver.page("rulePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
-		assertDeleteMsg(driver, "提交成功!");
+		driver.page("rulePage").sendKeys("name", name).sendKeys("content", content).click("submit");
+		assertSubMsg(driver, "提交成功!");
 	}
 	
 	public static void quickAddSlot(MyWebDriver driver, String name,String type){
 		driver.page("grammarPage").click("quickAddSlot");
-		driver.page("slotPage").click("add").sendKeys("name", name).click(type).click("submit");
+		driver.page("slotPage").sendKeys("name", name).click(type).click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
 	
-	public static void quickAddTemplate(MyWebDriver driver, String name, String content) throws Exception{
+	public static void quickAddTemplate(MyWebDriver driver, String name, String content) {
 		driver.page("grammarPage").click("quickAddTemplate");
-		driver.page("templatePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
+		driver.page("templatePage").sendKeys("name", name).sendKeys("content", content).click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
 	
+	public static void quickSearchRule(MyWebDriver driver,String name, String content){
+		driver.page("grammarPage").click("quickSearch").click("quickSearchRule").sendKeys("quickSearchBox", name);
+		driver.getElement("quickSearchResultRuleName").should(text(name));
+		driver.getElement("quickSearchResultRuleContent").should(text(content));
+	}
+	public static void quickSearchTemplate(MyWebDriver driver,String name, String content){
+		driver.page("grammarPage").click("quickSearch").click("quickSearchTemplate").sendKeys("quickSearchBox", name);
+		driver.getElement("quickSearchResultTemplateName").should(text(name));
+		driver.getElement("quickSearchResultTemplateContent").should(text(content));
+	}
+	public static void quickSearchSlot(MyWebDriver driver,String name, String content){
+		driver.page("grammarPage").click("quickSearch").click("quickSearchSlot").sendKeys("quickSearchBox", name);
+		driver.getElement("quickSearchResultSlotName").should(text(name));
+		driver.getElement("quickSearchResultSlotContent").should(text(content));
+	}
+	
+	public static SelenideElement getCorpusTestResult(String key){
+		String value = null;
+		switch (key) {
+		case "name":
+			value="grammar名称：";
+			break;
+		case "content":
+			value="grammar内容：";
+			break;
+		case "answer":
+			value="grammar答案：";
+			break;
+		case "global_modifier":
+			value="global modifier：";
+			break;
+		case "slotName":
+			value="slot名称：";
+			break;
+		case "slotType":
+			value="slot类型：";
+			break;
+		case "slotValue":
+			value="slot值：";
+			break;
+		case "slot_modifiers":
+			value="slot modifiers：";
+			break;
+		default:
+			throw new RuntimeException("no such key {"+key+"}");
+		}
+		return $(byText(value)).parent().$$(By.tagName("td")).get(1);
+	}
 	
 }

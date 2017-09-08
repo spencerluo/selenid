@@ -1,6 +1,7 @@
 package testcases;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static modules.AppModule.createApp;
@@ -14,18 +15,30 @@ import static modules.GrammarModule.addGrammarAndAssert;
 import static modules.GrammarModule.changeGrammar;
 import static modules.GrammarModule.changeGrammarAndAssert;
 import static modules.GrammarModule.deleteGrammar;
+import static modules.GrammarModule.getCorpusTestResult;
+import static modules.GrammarModule.quickAddRule;
+import static modules.GrammarModule.quickAddSlot;
+import static modules.GrammarModule.quickAddTemplate;
+import static modules.GrammarModule.quickSearchRule;
+import static modules.GrammarModule.quickSearchSlot;
+import static modules.GrammarModule.quickSearchTemplate;
 import static modules.GrammarModule.searchGrammar;
 import static modules.GrammarModule.testGrammar;
 import static modules.LoginModule.login;
 import static modules.RuleModule.addRule;
+import static modules.RuleModule.searchRule;
 import static modules.SlotModule.addSlotDuration;
 import static modules.SlotModule.addSlotExt;
 import static modules.SlotModule.addSlotFloat;
 import static modules.SlotModule.addSlotInternal;
 import static modules.SlotModule.addSlotNumber;
 import static modules.SlotModule.addSlotTimepoint;
+import static modules.SlotModule.assertSearchResult;
+import static modules.SlotModule.searchSLot;
 import static modules.TemplateModule.addTemplate;
+import static modules.TemplateModule.searchTemplate;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -157,10 +170,18 @@ public class TestGrammar extends BaseTest {
 		addGrammarAndAssert(driver, "grammar20", "<float>的次方", "2.5的次方", "float：2.5");
 	}
 	
-	@Test(description = "内容引用slot_modifier")
+	@Test(description = "内容引用slot_modifier,并修改slot_modifier")
 	public void testGrammar21() {
 		addSlotInternal(driver, "mai");
 		addGrammarAndAssert(driver, "grammar21", "买电视<{mai@=buy}>", "买电视", "mai：");
+		changeGrammar(driver, "grammar21", "(买电视|买冰箱)<{mai@=买}>", "买冰箱");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("买电视"));
+		driver.page("mainPage").click("详情");
+		getNewOldResult(driver, "new").get("slot_modifier").should(text("买"));
+		getNewOldResult(driver, "old").get("slot_modifier").should(text("buy"));
+		driver.page("grammarPage").click("submitChange");
+		assertSubMsg(driver, "提交成功!");
 	}
 	
 	@Test(description = "内容引用带匹配的slot_modifier")
@@ -173,6 +194,14 @@ public class TestGrammar extends BaseTest {
 	@Test(description = "内容引用global_modifier")
 	public void testGrammar23() {
 		addGrammarAndAssert(driver, "grammar23", "装电视<{@=装&build}>", "装电视", "无");
+		changeGrammar(driver, "grammar23", "(装电视|装冰箱)<{@=装&造}>", "装冰箱");
+		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
+		driver.getElement("语料").should(text("装电视"));
+		driver.page("mainPage").click("详情");
+		getNewOldResult(driver, "new").get("global_modifier").should(text("装,造"));
+		getNewOldResult(driver, "old").get("global_modifier").should(text("build,装"));
+		driver.page("grammarPage").click("submitChange");
+		assertSubMsg(driver, "提交成功!");
 	}
 	
 	@Test(description = "内容引用带匹配的globle_modifier")
@@ -401,7 +430,84 @@ public class TestGrammar extends BaseTest {
 	public void testGrammar52(){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("add");
+		driver.sleep(2000);
+		quickAddRule(driver, "quickrule", "test");
+		quickSearchRule(driver, "quickrule", "test");
+		driver.click("quickSearchRuleEdit");
+		driver.page("rulePage").clear("content").sendKeys("content", "testrule").click("submit");
+		assertSubMsg(driver, "提交成功!");
+		driver.refresh();
+		driver.page("mainPage").click("rule");
+		searchRule(driver, "quickrule", "testrule");
+		
 	}
+	
+	@Test(description="快速添加和编辑slot")
+	public void testGrammar53(){
+		driver.page("mainPage").click("grammar");
+		driver.page("grammarPage").click("add");
+		driver.sleep(2000);
+		quickAddSlot(driver, "quickslot", "number");
+		quickSearchSlot(driver, "quickslot", "number");
+		driver.click("quickSearchSlotEdit");
+		driver.page("slotPage").click("float").click("submit");
+		assertSubMsg(driver, "提交成功!");
+		driver.refresh();
+		driver.page("mainPage").click("slot");
+		searchSLot(driver, "quickslot");
+		assertSearchResult(driver, "quickslot", "float", "无", "无");
+	}
+	
+	@Test(description="快速添加和编辑Template")
+	public void testGrammar54(){
+		driver.page("mainPage").click("grammar");
+		driver.page("grammarPage").click("add");
+		driver.sleep(2000);
+		quickAddTemplate(driver, "quicktemplate", "[=s=]test");
+		quickSearchTemplate(driver, "quicktemplate", "[=s=]test");
+		driver.click("quickSearchTemplateEdit");
+		driver.page("templatePage").clear("content").sendKeys("content", "[=s=]testtemplate").click("submit");
+		assertSubMsg(driver, "提交成功!");
+		driver.refresh();
+		driver.page("mainPage").click("template");
+		searchTemplate(driver, "quicktemplate", "[=s=]testtemplate");
+		
+	}
+	
+	@Test(description="测试答案")
+	public void testGrammar55(){
+		addGrammar(driver, "grammar55", "testanswer", "testanswer", "good", "提交成功");
+		searchGrammar(driver, "grammar55", "testanswer", "good");
+		searchExistCorpus(driver, "testanswer", "grammar55", "good", "无");
+	}
+	
+	@Test(description="测试多个答案")
+	public void testGrammar56(){
+		driver.page("mainPage").click("grammar");
+		driver.page("grammarPage").click("add").sendKeys("name", "grammar56").sendKeys("content", "testanswers").sendKeys("corpus", "testanswers");
+		driver.click("addAnswers").click("addAnswers").sendKeys("answer1", "answer1").sendKeys("answer2", "answer2").sendKeys("answer3", "answer3").click("submit");
+		assertSubMsg(driver, "提交成功!");
+		driver.page("grammarPage").click("sortButton").click("sortByChange");
+		$(By.xpath("//*[@title='grammar56']/preceding-sibling::*[3]/img")).click();
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[1]")).should(text("answer1"));
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[2]")).should(text("answer2"));
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[3]")).should(text("answer3"));
+	}
+	
+	@Test(description="新增grammar时点击测试")
+	public void testGrammar57(){
+		addSlotExt(driver, "data");
+		testGrammar(driver, "grammar57", "测试<data><{data@=data}><{@=goods}>", "测试数据", "好的");
+		getCorpusTestResult("name").should(text("grammar57"));
+		getCorpusTestResult("content").should(text("测试<data><{data@=data}><{@=goods}>"));
+		getCorpusTestResult("answer").should(text("好的"));
+		getCorpusTestResult("global_modifier").should(text("goods"));
+		getCorpusTestResult("slotName").should(text("data"));
+		getCorpusTestResult("slotType").should(text("ext"));
+		getCorpusTestResult("slotValue").should(text("数据"));
+		getCorpusTestResult("slot_modifiers").should(text("data"));
+	}
+	
 	
 	@AfterMethod()
 	public void afterMethod() {
@@ -422,6 +528,7 @@ public class TestGrammar extends BaseTest {
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		try {
+			driver.refresh();
 			release(driver);
 		} finally {
 			driver.sleep(2000);
