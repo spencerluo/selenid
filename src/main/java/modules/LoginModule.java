@@ -1,11 +1,14 @@
 package modules;
 import static com.codeborne.selenide.Selenide.open;
 
+import io.qameta.allure.Step;
 import utils.MyWebDriver;
 
 public class LoginModule {
 
 	private static int network = 1;
+	
+	@Step("login")
 	public static void login (MyWebDriver driver, String username, String password){
 		if(network==1){
 			driver.get("http://portal.olavoice.com/open/website/login/login_show");

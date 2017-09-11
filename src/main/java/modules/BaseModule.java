@@ -12,15 +12,18 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import utils.MyWebDriver;
 
 public class BaseModule {
 
+	@Step("assert subMsg is 【{msg}】")
 	public static void assertSubMsg(MyWebDriver driver, String msg){
 		driver.page("mainPage").getElement("subMsg").should(text(msg));
 		driver.page("mainPage").click("subMsgClose");
 	}
 	
+	@Step("get NewOldResult 【{type}】")
 	public static Map<String, SelenideElement> getNewOldResult(MyWebDriver driver, String type){
 		if(type.equals("new")){
 			type = "newId";
@@ -45,12 +48,14 @@ public class BaseModule {
 		return map;
 	}
 	
+	@Step("release opengrammar")
 	public static void release(MyWebDriver driver){
 		driver.page("mainPage").click("release");
 		driver.page("releasePage").click("release").click("subMsgClose");
 		driver.sleep(2000);
 	}
 	
+	@Step("configure module 【{appName}】's priorityValue to 【{priorityValue}】")
 	public static void configureModules(MyWebDriver driver, String appName, String priorityValue) throws Exception {
 		driver.page("loginPage").click("配置模块");
 		driver.sleep(2000);

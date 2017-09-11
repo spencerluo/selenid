@@ -178,7 +178,10 @@ public class TestRule extends BaseTest{
 	public void testRule18(){
 		addRule(driver, "rule18", "删除已被grammar使用的rule");
 		addGrammar(driver, "grammar5", "<rule18>", "删除已被grammar使用的rule");
-		deleteRule(driver, "rule18", "删除失败!已被使用!");
+		deleteRule(driver, "rule18");
+		driver.page("rulePage").getElement("deleteMsg").should(text("删除失败!已被使用!"));
+		driver.click("删除详情").getElement("删除详情信息").should(text("<rule18> is not defined"));
+		driver.click("deleteMsgClose");
 	}
 	
 	@AfterMethod

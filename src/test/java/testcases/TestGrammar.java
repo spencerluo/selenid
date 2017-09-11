@@ -1,6 +1,7 @@
 package testcases;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -10,31 +11,11 @@ import static modules.BaseModule.assertSubMsg;
 import static modules.BaseModule.getNewOldResult;
 import static modules.BaseModule.release;
 import static modules.CorpusModule.searchExistCorpus;
-import static modules.GrammarModule.addGrammar;
-import static modules.GrammarModule.addGrammarAndAssert;
-import static modules.GrammarModule.changeGrammar;
-import static modules.GrammarModule.changeGrammarAndAssert;
-import static modules.GrammarModule.deleteGrammar;
-import static modules.GrammarModule.getCorpusTestResult;
-import static modules.GrammarModule.quickAddRule;
-import static modules.GrammarModule.quickAddSlot;
-import static modules.GrammarModule.quickAddTemplate;
-import static modules.GrammarModule.quickSearchRule;
-import static modules.GrammarModule.quickSearchSlot;
-import static modules.GrammarModule.quickSearchTemplate;
-import static modules.GrammarModule.searchGrammar;
-import static modules.GrammarModule.testGrammar;
+import static modules.GrammarModule.*;
 import static modules.LoginModule.login;
 import static modules.RuleModule.addRule;
 import static modules.RuleModule.searchRule;
-import static modules.SlotModule.addSlotDuration;
-import static modules.SlotModule.addSlotExt;
-import static modules.SlotModule.addSlotFloat;
-import static modules.SlotModule.addSlotInternal;
-import static modules.SlotModule.addSlotNumber;
-import static modules.SlotModule.addSlotTimepoint;
-import static modules.SlotModule.assertSearchResult;
-import static modules.SlotModule.searchSLot;
+import static modules.SlotModule.*;
 import static modules.TemplateModule.addTemplate;
 import static modules.TemplateModule.searchTemplate;
 
@@ -489,23 +470,23 @@ public class TestGrammar extends BaseTest {
 		assertSubMsg(driver, "提交成功!");
 		driver.page("grammarPage").click("sortButton").click("sortByChange");
 		$(By.xpath("//*[@title='grammar56']/preceding-sibling::*[3]/img")).click();
-		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[1]")).should(text("answer1"));
-		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[2]")).should(text("answer2"));
-		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[3]")).should(text("answer3"));
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[1]")).should(exactText("answer1"));
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[2]")).should(exactText("answer2"));
+		$(By.xpath("//*[@title='grammar56']/following-sibling::*[2]/span/div[3]")).should(exactText("answer3"));
 	}
 	
 	@Test(description="新增grammar时点击测试")
 	public void testGrammar57(){
 		addSlotExt(driver, "data");
 		testGrammar(driver, "grammar57", "测试<data><{data@=data}><{@=goods}>", "测试数据", "好的");
-		getCorpusTestResult("name").should(text("grammar57"));
-		getCorpusTestResult("content").should(text("测试<data><{data@=data}><{@=goods}>"));
-		getCorpusTestResult("answer").should(text("好的"));
-		getCorpusTestResult("global_modifier").should(text("goods"));
-		getCorpusTestResult("slotName").should(text("data"));
-		getCorpusTestResult("slotType").should(text("ext"));
-		getCorpusTestResult("slotValue").should(text("数据"));
-		getCorpusTestResult("slot_modifiers").should(text("data"));
+		getCorpusTestResult("name").should(exactText("grammar57"));
+		getCorpusTestResult("content").should(exactText("测试<data><{data@=data}><{@=goods}>"));
+		getCorpusTestResult("answer").should(exactText("好的"));
+		getCorpusTestResult("global_modifier").should(exactText("goods"));
+		getCorpusTestResult("slotName").should(exactText("data"));
+		getCorpusTestResult("slotType").should(exactText("ext"));
+		getCorpusTestResult("slotValue").should(exactText("数据"));
+		getCorpusTestResult("slot_modifiers").should(exactText("data"));
 	}
 	
 	

@@ -9,11 +9,7 @@ import static modules.BaseModule.configureModules;
 import static modules.BaseModule.release;
 import static modules.GrammarModule.addGrammar;
 import static modules.LoginModule.login;
-import static modules.SlotModule.addSlotDuration;
-import static modules.SlotModule.addSlotExt;
-import static modules.SlotModule.addSlotFloat;
-import static modules.SlotModule.addSlotNumber;
-import static modules.SlotModule.addSlotTimepoint;
+import static modules.SlotModule.*;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -36,6 +32,7 @@ public class TestCite extends BaseTest{
   
   @Test(priority=2)
   public void readySlot2() {
+	  addSlotDatetime(driver, "时间", "any", "提交成功!");
 	  addSlotTimepoint(driver, "时间点");
 	  addSlotDuration(driver, "时间段");
 	  addSlotNumber(driver, "年龄");

@@ -1,14 +1,19 @@
 package modules;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
+
+import io.qameta.allure.Step;
+
 import static modules.BaseModule.assertSubMsg;
 import utils.MyWebDriver;
 
 public class TemplateModule{
 
+	@Step("add template 【{name}】")
 	public static void addTemplate(MyWebDriver driver, String name, String content, String msg){
 		driver.page("mainPage").click("template");
 		driver.page("templatePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
@@ -19,6 +24,7 @@ public class TemplateModule{
 		addTemplate(driver, name, content, "提交成功!");
 	}
 	
+	@Step("change template 【{name}】")
 	public static void changeTemplate(MyWebDriver driver, String name, String content, String msg){
 		driver.page("mainPage").click("template");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[1]/img")).click();
@@ -26,12 +32,14 @@ public class TemplateModule{
 		assertSubMsg(driver, msg);
 	}
 	
+	@Step("change template 【{name}】")
 	public static void changeTemplate(MyWebDriver driver, String name, String content){
 		driver.page("mainPage").click("template");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[1]/img")).click();
 		driver.page("templatePage").clear("content").sendKeys("content", content).click("submit");
 	}
 	
+	@Step("delete template 【{name}】")
 	public static void deleteTemplate(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("template");
 		$(By.xpath("//*[@title='" + name + "']/following-sibling::*[3]/div[2]/img")).click();
@@ -40,16 +48,19 @@ public class TemplateModule{
 		assertDeleteMsg(driver, msg);
 	}
 	
+	@Step("search template 【{name}】")
 	public static void searchTemplate(MyWebDriver driver, String name, String content){
 		driver.page("templatePage").sendKeys("searchBox", name).click("searchSubmit");
 		assertSearchResult(driver, name, content);
 	}
 	
+	@Step("assert searchResult 【{name}】")
 	public static void assertSearchResult(MyWebDriver driver, String name, String content){
-		driver.page("templatePage").getElement("searchResultName").should(text(name));
-		driver.page("templatePage").getElement("searchResultContent").should(text(content));
+		driver.page("templatePage").getElement("searchResultName").should(exactText(name));
+		driver.page("templatePage").getElement("searchResultContent").should(exactText(content));
 	}
 	
+	@Step("assert deleteMsg 【{msg}】")
 	public static void assertDeleteMsg(MyWebDriver driver, String msg){
 		driver.page("templatePage").getElement("deleteMsg").should(text(msg));
 		driver.page("templatePage").click("deleteMsgClose");

@@ -19,6 +19,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import exception.XmlNoSuchElementException;
 import exception.XmlNoSuchPageException;
+import io.qameta.allure.Step;
 
 public class MyWebDriver{
 	private Node page = null;
@@ -31,9 +32,12 @@ public class MyWebDriver{
 		}
 		return driver;
 	}
+	
+	@Step("open url 【{absoluteUrl}】")
 	public void get(String absoluteUrl){
 		open(absoluteUrl);;
 	}
+	
 	public MyWebDriver page(String pageName){
 		this.pageName = pageName;
 		List<Node> pages = getNodes("page", "name", pageName);
@@ -82,21 +86,23 @@ public class MyWebDriver{
 	public SelenideElement getElement(String elementName){
 		return $(by(elementName));
 	}
-	
+	@Step("click 【{elementName}】 button")
 	public MyWebDriver click(String elementName){
 		try {
+//			driver.sleep(1000);
 			getElement(elementName).click();
 		} catch (AssertionError e) {
-			throw new NoSuchElementException("{"+pageName+" __ "+elementName+"} is not visible\n"+e.getMessage());
+			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();
 	}
-	
+	@Step("send 【{value}】 to 【{elementName}】 box")
 	public MyWebDriver sendKeys(String elementName, String value){
 		try {
+//			driver.sleep(1000);
 			getElement(elementName).sendKeys(value);
 		} catch (AssertionError  e) {
-			throw new NoSuchElementException("{"+pageName+" __ "+elementName+"} is not visible\n"+e.getMessage());
+			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();
 	}
@@ -105,7 +111,7 @@ public class MyWebDriver{
 		try {
 			getElement(elementName).clear();
 		} catch (AssertionError e) {
-			throw new NoSuchElementException("{"+pageName+" __ "+elementName+"} is not visible\n"+e.getMessage());
+			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();
 	}

@@ -8,11 +8,13 @@ import static modules.GrammarModule.testGrammar;
 import static modules.LoginModule.login;
 import static modules.SlotModule.addSlotExt;
 
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Step;
 import modules.AppModule;
 import modules.GrammarModule;
 import utils.MyWebDriver;
@@ -21,17 +23,10 @@ public class NewTest1 extends BaseTest{
 	MyWebDriver driver;
   @Test
   public void f() {
-	  addSlotExt(driver, "data");
-		testGrammar(driver, "grammar57", "测试<data><{data@=data}><{@=goods}>", "测试数据", "好的");
-		GrammarModule.getCorpusTestResult("name").should(text("grammar57"));
-		GrammarModule.getCorpusTestResult("content").should(text("测试<data><{data@=data}><{@=goods}>"));
-		GrammarModule.getCorpusTestResult("answer").should(text("好的"));
-		GrammarModule.getCorpusTestResult("global_modifier").should(text("goods"));
-		GrammarModule.getCorpusTestResult("slotName").should(text("data"));
-		GrammarModule.getCorpusTestResult("slotType").should(text("ext"));
-		GrammarModule.getCorpusTestResult("slotValue").should(text("数据"));
-		GrammarModule.getCorpusTestResult("slot_modifiers").should(text("data"));
+	  addSlotExt(driver, "names");
   }
+  
+  
   
 	@AfterMethod()
 	public void afterMethod() {

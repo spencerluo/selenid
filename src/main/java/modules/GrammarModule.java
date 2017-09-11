@@ -1,6 +1,7 @@
 package modules;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static modules.CorpusModule.searchExistCorpus;
@@ -9,10 +10,12 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import utils.MyWebDriver;
 
 public class GrammarModule{
 
+	@Step("add grammar 【{name}】")
 	public static void addGrammar(MyWebDriver driver, String name, String content, String corpus, String answer){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("add").sendKeys("name", name).sendKeys("content", content).sendKeys("corpus", corpus);
@@ -44,7 +47,7 @@ public class GrammarModule{
 		searchExistCorpus(driver, corpus, name, anwser, slot);
 	}
 	
-	
+	@Step("change grammar 【{name}】")
 	public static void changeGrammar(MyWebDriver driver, String name, String content, String corpus, String answer, String msg){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("sortButton").click("sortByChange");
@@ -59,6 +62,7 @@ public class GrammarModule{
 		assertSubMsg(driver, msg);
 	}
 	
+	@Step("add grammar 【{name}】")
 	public static void changeGrammar(MyWebDriver driver, String name, String content, String corpus){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("sortButton").click("sortByChange");
@@ -72,6 +76,7 @@ public class GrammarModule{
 		searchExistCorpus(driver, corpus, name, "语义", slot);
 	}
 	
+	@Step("delete grammar 【{name}】")
 	public static void deleteGrammar(MyWebDriver driver, String name, String msg){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("sortButton").click("sortByChange");
@@ -81,6 +86,7 @@ public class GrammarModule{
 		assertDeleteMsg(driver, msg);
 	}
 	
+	@Step("test grammar 【{name}】")
 	public static void testGrammar(MyWebDriver driver, String name, String content, String corpus, String answer){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("add").sendKeys("name", name).sendKeys("content", content).sendKeys("corpus", corpus);
@@ -92,56 +98,69 @@ public class GrammarModule{
 		driver.click("test");
 	}
 	
+	@Step("search grammar 【{name}】and assert")
 	public static void searchGrammar(MyWebDriver driver, String name, String content, String answer){
 		driver.page("grammarPage").sendKeys("searchBox", name).click("searchSubmit");
 		assertSearchResult(driver, name, content, answer);
 	}
 	
+	@Step("assert searchResult 【{name}】")
 	public static void assertSearchResult(MyWebDriver driver, String name, String content, String answer) {
-		driver.page("grammarPage").getElement("searchResultName").should(text(name));
-		driver.page("grammarPage").getElement("searchResultContent").should(text(content));
-		driver.page("grammarPage").getElement("searchResultAnswer").should(text(answer));
+		driver.page("grammarPage").getElement("searchResultName").should(exactText(name));
+		driver.page("grammarPage").getElement("searchResultContent").should(exactText(content));
+		driver.page("grammarPage").getElement("searchResultAnswer").should(exactText(answer));
 	}
 	
 
+	@Step("assert deleteMsg 【{msg}】")
 	public static void assertDeleteMsg(MyWebDriver driver, String msg){
 		driver.page("grammarPage").getElement("deleteMsg").should(text(msg));
 		driver.page("grammarPage").click("deleteMsgClose");
 	}
 	
+	@Step("quick add rule 【{name}】")
 	public static void quickAddRule(MyWebDriver driver, String name, String content){
 		driver.page("grammarPage").click("quickAddRule");
 		driver.page("rulePage").sendKeys("name", name).sendKeys("content", content).click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
 	
+	@Step("quick add slot 【{name}】")
 	public static void quickAddSlot(MyWebDriver driver, String name,String type){
 		driver.page("grammarPage").click("quickAddSlot");
 		driver.page("slotPage").sendKeys("name", name).click(type).click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
 	
+	@Step("quick add template 【{name}】")
 	public static void quickAddTemplate(MyWebDriver driver, String name, String content) {
 		driver.page("grammarPage").click("quickAddTemplate");
 		driver.page("templatePage").sendKeys("name", name).sendKeys("content", content).click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
 	
+	@Step("quick search rule 【{name}】")
 	public static void quickSearchRule(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchRule").sendKeys("quickSearchBox", name);
 		driver.getElement("quickSearchResultRuleName").should(text(name));
 		driver.getElement("quickSearchResultRuleContent").should(text(content));
 	}
+	
+	@Step("quick search template 【{name}】")
 	public static void quickSearchTemplate(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchTemplate").sendKeys("quickSearchBox", name);
 		driver.getElement("quickSearchResultTemplateName").should(text(name));
 		driver.getElement("quickSearchResultTemplateContent").should(text(content));
 	}
+	
+	@Step("quick search slot 【{name}】")
 	public static void quickSearchSlot(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchSlot").sendKeys("quickSearchBox", name);
 		driver.getElement("quickSearchResultSlotName").should(text(name));
 		driver.getElement("quickSearchResultSlotContent").should(text(content));
 	}
+	
+	
 	
 	public static SelenideElement getCorpusTestResult(String key){
 		String value = null;

@@ -15,6 +15,7 @@ public class TestLogin extends BaseTest{
   @Test
   public void testLogin() {
 	  login(driver, "spencer", "asdD1234");
+	  driver.page("loginPage").getElement("user").should(text("spencer"));
   }
   
   @Test(dependsOnMethods = "testLogin")

@@ -98,6 +98,8 @@
 		<element name="searchResultContent" type="xpath" value='//*[@id="subform"]/div[2]/table/tbody/tr/td[5]/span' />
 		<element name="deleteMsg" type="xpath" value='html/body/div[6]/div[2]/div[7]/div[2]/div/div[2]/div[1]/p' />
 		<element name="deleteMsgClose" type="xpath" value='html/body/div[6]/div[2]/div[7]/div[3]/a' />
+		<element name="删除详情" type="xpath" value='//*[@id="ruledeleteResultDialog"]/div[2]/div/div[1]' />
+		<element name="删除详情信息" type="xpath" value='//*[@id="ruledeleteResultDialog"]/div[2]/div/div[2]/li/span'/>
 		<element name="titleErrorMsg" type="xpath" value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[4]/td[2]/div' />
 		<element name="contentErrorMsg" type="xpath" value='//*[@id="ruleBox"]/div/div[1]/table/tbody/tr[6]/td[2]/div' />
 		
@@ -108,6 +110,8 @@
 			value='//*[@id="slotBox"]/div[1]/input[1]' />
 		<element name="datetime" type="xpath"
 			value='//*[@id="slotBox"]/div[3]/div[1]/select/option[1]' />
+		<element name="any" type="xpath"
+			value='//*[@id="slotBox"]/div[3]/div[2]/select/option[1]' />
 		<element name="timepoint" type="xpath"
 			value='//*[@id="slotBox"]/div[3]/div[2]/select/option[2]' />
 		<element name="duration" type="xpath"
