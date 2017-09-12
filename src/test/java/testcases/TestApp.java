@@ -1,8 +1,11 @@
 package testcases;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
-import static modules.AppModule.*;
+import static com.codeborne.selenide.Selenide.refresh;
+import static com.codeborne.selenide.Selenide.switchTo;
+import static modules.AppModule.createApp;
+import static modules.AppModule.deleteApp;
+import static modules.AppModule.enterApp;
+import static modules.AppModule.importApp;
 import static modules.LoginModule.login;
 
 import org.testng.annotations.AfterClass;
@@ -49,14 +52,17 @@ public class TestApp extends BaseTest {
 	public void testApp4(String appName, CharSequence grammar) {
 		try {
 			importApp(driver, appName);
-			driver.page("mainPage").getElement("subMsg").waitUntil(text("模块导入成功!"), 20000);
+			driver.page("mainPage").getElement("subMsg").untilText(("模块导入成功!"), 20000);
 			driver.click("subMsgClose");
 			enterApp(driver, appName);
 			driver.page("mainPage").click("grammar");
 			org.testng.Assert.assertTrue(driver.getSource().contains(grammar));
 		} finally {
 			refresh();
-			deleteApp(driver, appName);
+			try {
+				deleteApp(driver, appName);
+			} catch (Exception e) {
+			}
 		}
 	}
 
@@ -64,7 +70,7 @@ public class TestApp extends BaseTest {
 	public void testApp5(String name, String msg) {
 		driver.page("mainPage").click("changeApp");
 		driver.page("modelPage").click("add").sendKeys("addAppName", name).click("submit");
-		driver.getElement("nameErrorMsg").should(text(msg));
+		driver.getElement("nameErrorMsg").shouldText(msg);
 	}
 
 	@AfterMethod

@@ -41,7 +41,7 @@ public class TestSlot extends BaseTest {
 	public void testSlot2(String name, String msg) {
 		driver.page("mainPage").click("slot");
 		driver.page("slotPage").click("add").sendKeys("name", name).click("number").click("submit");
-		driver.getElement("errorMsg").should(text(msg));
+		driver.getElement("errorMsg").shouldText(msg);
 	}
 
 	@Test(description = "类型datetime+timepoint")
@@ -79,7 +79,7 @@ public class TestSlot extends BaseTest {
 		driver.page("mainPage").click("slot");
 		driver.page("slotPage").click("add").sendKeys("name", name).click("ext");
 		driver.clear("min").sendKeys("min", min).clear("max").sendKeys("max", max).click("submit");
-		driver.getElement("errorMsg").should(text(msg));
+		driver.getElement("errorMsg").shouldText(msg);
 	}
 	
 	@Test(description = "grammar不匹配ext类型的长度")
@@ -104,8 +104,8 @@ public class TestSlot extends BaseTest {
 		addSlotExt(driver, "slot11", "", "1", "20", "提交成功!");
 		addGrammar(driver, "g11", "看<slot11>", "看电影");
 		changeSlotTye(driver, "slot11", "number");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("看电影"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("看电影");
 		driver.click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text(""));
 		getNewOldResult(driver, "old").get("grammarName").should(text("g11"));

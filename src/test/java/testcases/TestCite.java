@@ -1,6 +1,5 @@
 package testcases;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static modules.AppModule.createApp;
 import static modules.AppModule.deleteApp;
@@ -9,7 +8,12 @@ import static modules.BaseModule.configureModules;
 import static modules.BaseModule.release;
 import static modules.GrammarModule.addGrammar;
 import static modules.LoginModule.login;
-import static modules.SlotModule.*;
+import static modules.SlotModule.addSlotDatetime;
+import static modules.SlotModule.addSlotDuration;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotFloat;
+import static modules.SlotModule.addSlotNumber;
+import static modules.SlotModule.addSlotTimepoint;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -63,7 +67,7 @@ public class TestCite extends BaseTest{
 			driver.page("loginPage").clear("question").sendKeys("question", question).click("testSubmit");
 			driver.sleep(3000);
 		}
-		driver.getElement("answer").should(text(result));
+		driver.getElement("answer").shouldText(result);
 	}
   
 	@BeforeClass

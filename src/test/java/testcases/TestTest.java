@@ -1,6 +1,5 @@
 package testcases;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static modules.AppModule.deleteApp;
 import static modules.BaseModule.configureModules;
@@ -20,7 +19,7 @@ public class TestTest extends BaseTest{
   @Test(dataProvider="dp")
   public void testCorpus(String name, String question, String result) {
 	  driver.page("loginPage").clear("question").sendKeys("question", question).click("testSubmit");
-	  driver.getElement("answer").should(text(result));
+	  driver.getElement("answer").shouldText(result);
   }
   
 	@BeforeClass

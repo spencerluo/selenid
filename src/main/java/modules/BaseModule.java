@@ -1,6 +1,5 @@
 package modules;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -19,7 +18,7 @@ public class BaseModule {
 
 	@Step("assert subMsg is 【{msg}】")
 	public static void assertSubMsg(MyWebDriver driver, String msg){
-		driver.page("mainPage").getElement("subMsg").should(text(msg));
+		driver.page("mainPage").getElement("subMsg").shouldText(msg);
 		driver.page("mainPage").click("subMsgClose");
 	}
 	

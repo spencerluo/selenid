@@ -1,14 +1,12 @@
 package modules;
 
-import utils.MyWebDriver;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static modules.BaseModule.assertSubMsg;
+
 import org.openqa.selenium.By;
 
 import io.qameta.allure.Step;
+import utils.MyWebDriver;
 
 public class RuleModule{
 
@@ -60,13 +58,13 @@ public class RuleModule{
 	
 	@Step("assert searchResult 【{name}】")
 	public static void assertSearchResult(MyWebDriver driver, String name, String content){
-		driver.page("rulePage").getElement("searchResultName").should(exactText(name));
-		driver.page("rulePage").getElement("searchResultContent").should(exactText(content));
+		driver.page("rulePage").getElement("searchResultName").shouldExactText(name);
+		driver.page("rulePage").getElement("searchResultContent").shouldExactText(content);
 	}
 	
 	@Step("assert deleteMsg 【{msg}】")
 	public static void assertDeleteMsg(MyWebDriver driver, String msg){
-		driver.page("rulePage").getElement("deleteMsg").should(text(msg));
+		driver.page("rulePage").getElement("deleteMsg").shouldText(msg);
 		driver.page("rulePage").click("deleteMsgClose");
 	}
 }

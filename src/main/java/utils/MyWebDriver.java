@@ -1,6 +1,8 @@
 package utils;
 
 
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -24,6 +26,8 @@ import io.qameta.allure.Step;
 public class MyWebDriver{
 	private Node page = null;
 	private String pageName = null;
+	private SelenideElement element = null;
+	private String elementName;
 	private static MyWebDriver driver = null;
 	
 	public static MyWebDriver getMyDriver(){
@@ -83,14 +87,18 @@ public class MyWebDriver{
 		return by;
 	}
 	
-	public SelenideElement getElement(String elementName){
-		return $(by(elementName));
+	public MyWebDriver getElement(String elementName){
+		this.elementName = elementName;
+		element  = $(by(elementName));
+		return getMyDriver();
 	}
+	
 	@Step("click 【{elementName}】 button")
 	public MyWebDriver click(String elementName){
 		try {
 //			driver.sleep(1000);
-			getElement(elementName).click();
+			getElement(elementName);
+			element.click();
 		} catch (AssertionError e) {
 			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
@@ -100,7 +108,8 @@ public class MyWebDriver{
 	public MyWebDriver sendKeys(String elementName, String value){
 		try {
 //			driver.sleep(1000);
-			getElement(elementName).sendKeys(value);
+			getElement(elementName);
+			element.sendKeys(value);
 		} catch (AssertionError  e) {
 			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
@@ -109,11 +118,47 @@ public class MyWebDriver{
 	
 	public MyWebDriver clear(String elementName){
 		try {
-			getElement(elementName).clear();
+			getElement(elementName);
+			element.clear();
 		} catch (AssertionError e) {
 			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
 		}
 		return getMyDriver();
+	}
+	
+	public void shouldText(String msg){
+		try {
+			element.shouldBe(text(msg));
+		} catch (AssertionError e) {
+			String text = getText();
+			throw new RuntimeException("Element 【"+elementName+"】 should have text 【"+msg+"】but 【"+text+"】");
+		}
+	}
+	
+	public void shouldExactText(String msg){
+		try {
+			element.shouldBe(exactText(msg));
+		} catch (AssertionError e) {
+			String text = getText();
+			throw new RuntimeException("Element 【"+elementName+"】 should have text 【"+msg+"】but 【"+text+"】");
+		}
+	}
+	
+	public String getText(){
+		try {
+			return element.text();
+		} catch (AssertionError e) {
+			throw new NoSuchElementException("Element 【"+elementName+"】 in Page 【"+pageName+"】 is not visible\n"+e.getMessage());
+		}
+	}
+	
+	public void untilText(String msg, long timeoutMilliseconds){
+		try {
+			element.waitUntil(text(msg), timeoutMilliseconds);
+		} catch (Exception e) {
+			String text = getText();
+			throw new RuntimeException("Element 【"+elementName+"】 should have text 【"+msg+"】but 【"+text+"】");
+		}
 	}
 	
 	public String getSource(){

@@ -1,9 +1,5 @@
 package testcases;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.switchTo;
-import static modules.AppModule.deleteApp;
-import static modules.BaseModule.configureModules;
 import static modules.LoginModule.login;
 
 import org.testng.annotations.AfterClass;
@@ -12,8 +8,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.codeborne.selenide.Configuration;
-import static com.codeborne.selenide.Condition.*;
-
 
 import utils.MyWebDriver;
 import utils.ReadExcel;
@@ -23,7 +17,7 @@ public class NewTest extends BaseTest {
 	  @Test(dataProvider="dp")
 	  public void testCorpus(String question) {
 		  driver.page("loginPage").clear("question").sendKeys("question", question).click("testSubmit");
-		  driver.getElement("answer").should(text(question));
+		  driver.getElement("answer").shouldText(question);
 	  }
 	  
 		@BeforeClass

@@ -1,14 +1,11 @@
 package modules;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
+import static modules.BaseModule.assertSubMsg;
 
 import org.openqa.selenium.By;
 
 import io.qameta.allure.Step;
-
-import static modules.BaseModule.assertSubMsg;
 import utils.MyWebDriver;
 
 public class SlotModule{
@@ -108,7 +105,7 @@ public class SlotModule{
 	
 	@Step("assert deleteMsg 【{msg}】")
 	public static void assertDeleteMsg(MyWebDriver driver, String msg){
-		driver.page("slotPage").getElement("deleteMsg").should(text(msg));
+		driver.page("slotPage").getElement("deleteMsg").shouldText(msg);
 		driver.page("slotPage").click("deleteMsgClose");
 	}
 	
@@ -125,10 +122,10 @@ public class SlotModule{
 	
 	@Step("assert searchResult 【{name}】")
 	public static void assertSearchResult(MyWebDriver driver,String name, String type, String min ,String max){
-		driver.page("slotPage").getElement("searchResultName").should(exactText(name));
-		driver.page("slotPage").getElement("searchResultType").should(exactText(type));
-		driver.page("slotPage").getElement("searchResultMin").should(exactText(min));
-		driver.page("slotPage").getElement("searchResultMax").should(exactText(max));
+		driver.page("slotPage").getElement("searchResultName").shouldExactText(name);
+		driver.page("slotPage").getElement("searchResultType").shouldExactText(type);
+		driver.page("slotPage").getElement("searchResultMin").shouldExactText(min);
+		driver.page("slotPage").getElement("searchResultMax").shouldExactText(max);
 	}
 
 }

@@ -40,14 +40,14 @@ public class TestRule extends BaseTest{
 	public void testRule2(String name, String content, String msg) {
 		driver.page("mainPage").click("rule");
 		driver.page("rulePage").click("add").sendKeys("name", name).sendKeys("content", content).click("submit");
-		driver.page("rulePage").getElement("titleErrorMsg").should(text(msg));
+		driver.page("rulePage").getElement("titleErrorMsg").shouldText(msg);
 	}
 	
 	@Test(description="内容为空")
 	public void testRule3(){
 		driver.page("mainPage").click("rule");
 		driver.page("rulePage").click("add").sendKeys("name", "rule2").sendKeys("content", "").click("submit");
-		driver.page("rulePage").getElement("contentErrorMsg").should(text("内容不能为空"));
+		driver.page("rulePage").getElement("contentErrorMsg").shouldText("内容不能为空");
 	}
 	
 	@Test(description="引用内容为空")
@@ -69,8 +69,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule6", "(开启|打开|开下)<{action@=open}>");
 		addGrammar(driver, "grammar1", "<rule6>电视", "打开电视");
 		changeRule(driver, "rule6", "(开启|打开|开下)<{action@=opens}>");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("打开电视"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("打开电视");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slot_modifier").should(text("opens"));
 		getNewOldResult(driver, "old").get("slot_modifier").should(text("open"));
@@ -91,8 +91,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule8", "(听|听见)<{@=ting}>");
 		addGrammar(driver, "grammar2", "<rule8>音乐", "听音乐");
 		changeRule(driver, "rule8", "(听|听见)<{@=tings}>");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("听音乐"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("听音乐");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("global_modifier").should(text("tings"));
 		getNewOldResult(driver, "old").get("global_modifier").should(text("ting"));
@@ -107,8 +107,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule9", "动作<{this=动作}>");
 		addGrammar(driver, "grammar3", "做<rule9>", "做动作");
 		changeRule(driver, "rule9", "动作<{this=假动作}>");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("做动作"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("做动作");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slotValue").should(text("假动作"));
 		getNewOldResult(driver, "old").get("slotValue").should(text("动作"));
@@ -179,8 +179,8 @@ public class TestRule extends BaseTest{
 		addRule(driver, "rule18", "删除已被grammar使用的rule");
 		addGrammar(driver, "grammar5", "<rule18>", "删除已被grammar使用的rule");
 		deleteRule(driver, "rule18");
-		driver.page("rulePage").getElement("deleteMsg").should(text("删除失败!已被使用!"));
-		driver.click("删除详情").getElement("删除详情信息").should(text("<rule18> is not defined"));
+		driver.page("rulePage").getElement("deleteMsg").shouldText("删除失败!已被使用!");
+		driver.click("删除详情").getElement("删除详情信息").shouldText("<rule18> is not defined");
 		driver.click("deleteMsgClose");
 	}
 	

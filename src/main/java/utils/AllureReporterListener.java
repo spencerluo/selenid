@@ -24,7 +24,7 @@ public class AllureReporterListener implements IHookable {
     }
 
 
-    @Attachment(value = "Failure in method {0}", type = "image/png")
+    @Attachment(value = "Failure in method {methodName}", type = "image/png")
 	public static byte[] takeScreenShot(String methodName) {
 		TakesScreenshot tss = (TakesScreenshot) getWebDriver();
 		return tss.getScreenshotAs(OutputType.BYTES);

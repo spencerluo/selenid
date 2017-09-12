@@ -2,7 +2,6 @@ package modules;
 
 import utils.MyWebDriver;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
@@ -18,7 +17,7 @@ public class AppModule {
 		driver.page("modelPage").click("add");
 		driver.sendKeys("addAppName", appName);
 		driver.click("submit");
-		driver.page("mainPage").getElement("subMsg").should(text(msg));
+		driver.page("mainPage").getElement("subMsg").shouldText(msg);
 		driver.page("mainPage").click("subMsgClose");
 	}
 
@@ -35,7 +34,7 @@ public class AppModule {
 		driver.page("modelPage").click("delete");
 		driver.sleep(1000);
 		driver.click("deleteTwice");
-		driver.page("modelPage").getElement("deleteMsg").should(text(msg));
+		driver.page("modelPage").getElement("deleteMsg").shouldText(msg);
 		driver.page("modelPage").click("closeDeleteMsg");
 	}
 

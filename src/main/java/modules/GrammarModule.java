@@ -1,11 +1,10 @@
 package modules;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static modules.CorpusModule.searchExistCorpus;
 import static modules.BaseModule.assertSubMsg;
+import static modules.CorpusModule.searchExistCorpus;
+
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
@@ -62,7 +61,7 @@ public class GrammarModule{
 		assertSubMsg(driver, msg);
 	}
 	
-	@Step("add grammar 【{name}】")
+	@Step("change grammar 【{name}】")
 	public static void changeGrammar(MyWebDriver driver, String name, String content, String corpus){
 		driver.page("mainPage").click("grammar");
 		driver.page("grammarPage").click("sortButton").click("sortByChange");
@@ -106,15 +105,15 @@ public class GrammarModule{
 	
 	@Step("assert searchResult 【{name}】")
 	public static void assertSearchResult(MyWebDriver driver, String name, String content, String answer) {
-		driver.page("grammarPage").getElement("searchResultName").should(exactText(name));
-		driver.page("grammarPage").getElement("searchResultContent").should(exactText(content));
-		driver.page("grammarPage").getElement("searchResultAnswer").should(exactText(answer));
+		driver.page("grammarPage").getElement("searchResultName").shouldExactText(name);
+		driver.page("grammarPage").getElement("searchResultContent").shouldExactText(content);
+		driver.page("grammarPage").getElement("searchResultAnswer").shouldExactText(answer);
 	}
 	
 
 	@Step("assert deleteMsg 【{msg}】")
 	public static void assertDeleteMsg(MyWebDriver driver, String msg){
-		driver.page("grammarPage").getElement("deleteMsg").should(text(msg));
+		driver.page("grammarPage").getElement("deleteMsg").shouldText(msg);
 		driver.page("grammarPage").click("deleteMsgClose");
 	}
 	
@@ -142,22 +141,22 @@ public class GrammarModule{
 	@Step("quick search rule 【{name}】")
 	public static void quickSearchRule(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchRule").sendKeys("quickSearchBox", name);
-		driver.getElement("quickSearchResultRuleName").should(text(name));
-		driver.getElement("quickSearchResultRuleContent").should(text(content));
+		driver.getElement("quickSearchResultRuleName").shouldText(name);
+		driver.getElement("quickSearchResultRuleContent").shouldText(content);
 	}
 	
 	@Step("quick search template 【{name}】")
 	public static void quickSearchTemplate(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchTemplate").sendKeys("quickSearchBox", name);
-		driver.getElement("quickSearchResultTemplateName").should(text(name));
-		driver.getElement("quickSearchResultTemplateContent").should(text(content));
+		driver.getElement("quickSearchResultTemplateName").shouldText(name);
+		driver.getElement("quickSearchResultTemplateContent").shouldText(content);
 	}
 	
 	@Step("quick search slot 【{name}】")
 	public static void quickSearchSlot(MyWebDriver driver,String name, String content){
 		driver.page("grammarPage").click("quickSearch").click("quickSearchSlot").sendKeys("quickSearchBox", name);
-		driver.getElement("quickSearchResultSlotName").should(text(name));
-		driver.getElement("quickSearchResultSlotContent").should(text(content));
+		driver.getElement("quickSearchResultSlotName").shouldText(name);
+		driver.getElement("quickSearchResultSlotContent").shouldText(content);
 	}
 	
 	

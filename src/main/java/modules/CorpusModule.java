@@ -1,7 +1,5 @@
 package modules;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
@@ -18,10 +16,10 @@ public class CorpusModule {
 
 	@Step("assert searchResult 【{corpus}】")
 	public static void assertSearchResult(MyWebDriver driver, String corpus, String grammar, String answer, String slot) {
-		driver.page("corpusPage").getElement("searchResultCorpus").should(exactText(corpus));
-		driver.page("corpusPage").getElement("searchResultGrammar").should(exactText(grammar));
-		driver.page("corpusPage").getElement("searchResultAnswer").should(exactText(answer));
-		driver.page("corpusPage").getElement("searchResultSlot").should(exactText(slot));
+		driver.page("corpusPage").getElement("searchResultCorpus").shouldExactText(corpus);
+		driver.page("corpusPage").getElement("searchResultGrammar").shouldExactText(grammar);
+		driver.page("corpusPage").getElement("searchResultAnswer").shouldExactText(answer);
+		driver.page("corpusPage").getElement("searchResultSlot").shouldExactText(slot);
 	}
 	
 	public static void searchExistCorpus(MyWebDriver driver, String corpus, String grammar, String answer, String slot){
@@ -35,7 +33,7 @@ public class CorpusModule {
 		$(By.xpath("//*[@title='"+corpus+"']/following-sibling::*[5]/img")).click();
 		driver.sleep(1000);
 		driver.page("corpusPage").click("deleteSubmit");
-		driver.getElement("deleteMsg").should(text(msg));
+		driver.getElement("deleteMsg").shouldText(msg);
 		driver.click("deleteMsgClose");
 		
 	}

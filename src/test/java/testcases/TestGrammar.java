@@ -1,7 +1,7 @@
 package testcases;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.refresh;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -11,11 +11,31 @@ import static modules.BaseModule.assertSubMsg;
 import static modules.BaseModule.getNewOldResult;
 import static modules.BaseModule.release;
 import static modules.CorpusModule.searchExistCorpus;
-import static modules.GrammarModule.*;
+import static modules.GrammarModule.addGrammar;
+import static modules.GrammarModule.addGrammarAndAssert;
+import static modules.GrammarModule.changeGrammar;
+import static modules.GrammarModule.changeGrammarAndAssert;
+import static modules.GrammarModule.deleteGrammar;
+import static modules.GrammarModule.getCorpusTestResult;
+import static modules.GrammarModule.quickAddRule;
+import static modules.GrammarModule.quickAddSlot;
+import static modules.GrammarModule.quickAddTemplate;
+import static modules.GrammarModule.quickSearchRule;
+import static modules.GrammarModule.quickSearchSlot;
+import static modules.GrammarModule.quickSearchTemplate;
+import static modules.GrammarModule.searchGrammar;
+import static modules.GrammarModule.testGrammar;
 import static modules.LoginModule.login;
 import static modules.RuleModule.addRule;
 import static modules.RuleModule.searchRule;
-import static modules.SlotModule.*;
+import static modules.SlotModule.addSlotDuration;
+import static modules.SlotModule.addSlotExt;
+import static modules.SlotModule.addSlotFloat;
+import static modules.SlotModule.addSlotInternal;
+import static modules.SlotModule.addSlotNumber;
+import static modules.SlotModule.addSlotTimepoint;
+import static modules.SlotModule.assertSearchResult;
+import static modules.SlotModule.searchSLot;
 import static modules.TemplateModule.addTemplate;
 import static modules.TemplateModule.searchTemplate;
 
@@ -39,7 +59,7 @@ public class TestGrammar extends BaseTest {
 	@Test(dataProvider = "dp2", description = "名称是特殊字符，为空，数字开头")
 	public void testGrammar2(String name, String content, String corpus, String msg) {
 		addGrammar(driver, name, content, corpus, "null");
-		driver.page("grammarPage").getElement("titleErrorMsg").should(text(msg));
+		driver.page("grammarPage").getElement("titleErrorMsg").shouldText(msg);
 	}
 
 	@Test(description = "名称为大写+小写")
@@ -62,19 +82,19 @@ public class TestGrammar extends BaseTest {
 	@Test(description = "内容为空")
 	public void testGrammar6() {
 		addGrammar(driver, "grammar6", "", "grammar6", "null");
-		driver.page("grammarPage").getElement("contentErrorMsg").should(text("内容不能为空"));
+		driver.page("grammarPage").getElement("contentErrorMsg").shouldText("内容不能为空");
 	}
 	
 	@Test(description = "例句为空")
 	public void testGrammar7() {
 		addGrammar(driver, "grammar7", "grammar7", "", "null");
-		driver.page("grammarPage").getElement("corpusErrorMsg").should(text("例句不能为空"));
+		driver.page("grammarPage").getElement("corpusErrorMsg").shouldText("例句不能为空");
 	}
 	
 	@Test(description = "答案为空")
 	public void testGrammar8() {
 		addGrammar(driver, "grammar8", "grammar8", "grammar8", "");
-		driver.page("grammarPage").getElement("answerErrorMsg").should(text("答案至少填写一个"));
+		driver.page("grammarPage").getElement("answerErrorMsg").shouldText("答案至少填写一个");
 	}
 	
 	@Test(description = "内容包含特殊字符")
@@ -156,8 +176,8 @@ public class TestGrammar extends BaseTest {
 		addSlotInternal(driver, "mai");
 		addGrammarAndAssert(driver, "grammar21", "买电视<{mai@=buy}>", "买电视", "mai：");
 		changeGrammar(driver, "grammar21", "(买电视|买冰箱)<{mai@=买}>", "买冰箱");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("买电视"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("买电视");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slot_modifier").should(text("买"));
 		getNewOldResult(driver, "old").get("slot_modifier").should(text("buy"));
@@ -172,12 +192,12 @@ public class TestGrammar extends BaseTest {
 		addGrammarAndAssert(driver, "grammar22", "<shuo{actions@=shuo}>故事", "说故事", "actions：");
 	}
 	
-	@Test(description = "内容引用global_modifier")
+	@Test(description = "内容引用global_modifier，并修改global_modifier")
 	public void testGrammar23() {
 		addGrammarAndAssert(driver, "grammar23", "装电视<{@=装&build}>", "装电视", "无");
 		changeGrammar(driver, "grammar23", "(装电视|装冰箱)<{@=装&造}>", "装冰箱");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("装电视"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("装电视");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("global_modifier").should(text("装,造"));
 		getNewOldResult(driver, "old").get("global_modifier").should(text("build,装"));
@@ -225,8 +245,8 @@ public class TestGrammar extends BaseTest {
 		addSlotInternal(driver, "slot4");
 		addGrammar(driver, "grammar29", "(修仙|修人)<{slot4=修}>", "修仙");
 		changeGrammar(driver, "grammar29", "(修仙|修人)<{slot4=xiu}>", "修人");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("修仙"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("修仙");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("slotValue").should(text("xiu"));
 		getNewOldResult(driver, "old").get("slotValue").should(text("修"));
@@ -239,7 +259,7 @@ public class TestGrammar extends BaseTest {
 	@Test(description = "例句不匹配任何grammar")
 	public void testGrammar30() {
 		testGrammar(driver, "grammar30", "拆电视", "拆", "null");
-		driver.getElement("testMsg").should(text("无匹配!"));
+		driver.getElement("testMsg").shouldText("无匹配!");
 		driver.click("testOK").click("submit");
 		assertSubMsg(driver, "new grammar:<grammar30> can not match any corpus");
 	}
@@ -247,7 +267,7 @@ public class TestGrammar extends BaseTest {
 	@Test(description = "例句只匹配当前grammar")
 	public void testGrammar31_1() {
 		testGrammar(driver, "grammar31_1", "来跳舞", "来跳舞", "null");
-		driver.getElement("testMsg").should(text("匹配成功!"));
+		driver.getElement("testMsg").shouldText("匹配成功!");
 		driver.click("testClose").click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
@@ -256,7 +276,7 @@ public class TestGrammar extends BaseTest {
 	public void testGrammar31() {
 		addGrammar(driver, "chipingguo", "吃苹果", "吃苹果");
 		testGrammar(driver, "grammar31", "吃苹果", "吃苹果", "null");
-		driver.getElement("testMsg").should(text("匹配成功但产生了冲突!"));
+		driver.getElement("testMsg").shouldText("匹配成功但产生了冲突!");
 		driver.click("testOK").click("submit");
 		assertSubMsg(driver, "提交成功!");
 	}
@@ -265,7 +285,7 @@ public class TestGrammar extends BaseTest {
 	public void testGrammar32() {
 		addGrammar(driver, "dazhong", "大众", "大众");
 		testGrammar(driver, "grammar32", "打字", "大众", "null");
-		driver.getElement("testMsg").should(text("匹配失败!与其它grammar相匹配!"));
+		driver.getElement("testMsg").shouldText("匹配失败!与其它grammar相匹配!");
 		driver.click("testOK").click("submit");
 		assertSubMsg(driver, "new grammar:<grammar32> can not match any corpus");
 	}
@@ -290,8 +310,8 @@ public class TestGrammar extends BaseTest {
 		addSlotExt(driver, "slot7");
 		addGrammar(driver, "观测天空", "观测<slot7>", "观测天空");
 		addGrammar(driver, "grammar35", "观测天空", "观测天空","null");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("观测天空"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("观测天空");
 		driver.page("mainPage").click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text("grammar35"));
 		getNewOldResult(driver, "old").get("grammarName").should(text("观测天空"));
@@ -371,8 +391,8 @@ public class TestGrammar extends BaseTest {
 	public void testGrammar48() {
 		addGrammar(driver, "grammar48", "说故事", "说故事" );
 		changeGrammar(driver, "grammar48", "说些故事", "说些故事");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("说故事"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("说故事");
 		driver.click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text(""));
 		getNewOldResult(driver, "old").get("grammarName").should(text("grammar48"));
@@ -392,8 +412,8 @@ public class TestGrammar extends BaseTest {
 	public void testGrammar50() {
 		addGrammar(driver, "grammar50", "设计故事", "设计故事" );
 		changeGrammar(driver, "grammar50", "设计一段故事", "设计一个故事");
-		driver.page("mainPage").getElement("subMsg").should(text("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除"));
-		driver.getElement("语料").should(text("设计故事"));
+		driver.page("mainPage").getElement("subMsg").shouldText("以下例句的新匹配结果与旧结果不一致,是否确认修改?没有grammar匹配的语料将被删除");
+		driver.getElement("语料").shouldText("设计故事");
 		driver.click("详情");
 		getNewOldResult(driver, "new").get("grammarName").should(text(""));
 		getNewOldResult(driver, "old").get("grammarName").should(text("grammar50"));
